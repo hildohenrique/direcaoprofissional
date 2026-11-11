@@ -65,8 +65,17 @@ export function App() {
 
   useEffect(() => {
     const raiz = document.documentElement;
-    if (e.ajustes.tema === 'auto') raiz.removeAttribute('data-tema');
-    else raiz.setAttribute('data-tema', e.ajustes.tema);
+    const aplicar = () => {
+      /* quando o app está embutido em outra página, ela pode indicar o tema em data-theme */
+      const deFora = raiz.getAttribute('data-theme');
+      const tema = e.ajustes.tema !== 'auto' ? e.ajustes.tema : deFora === 'dark' ? 'escuro' : deFora === 'light' ? 'claro' : null;
+      if (tema) raiz.setAttribute('data-tema', tema);
+      else raiz.removeAttribute('data-tema');
+    };
+    aplicar();
+    const olho = new MutationObserver(aplicar);
+    olho.observe(raiz, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => olho.disconnect();
   }, [e.ajustes.tema]);
 
   useEffect(() => {

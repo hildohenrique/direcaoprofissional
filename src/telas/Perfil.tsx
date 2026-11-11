@@ -8,6 +8,7 @@ import { diaLocal, reais } from '@/nucleo/formato';
 import { semanaMarcada, semanasNoRitmo } from '@/nucleo/ritmo';
 import { vozDisponivel } from '@/nucleo/som';
 import { Icone } from '@/ui/Icone';
+import { Conta } from './Conta';
 
 function Chave({ rotulo, dica, ligada, aoMudar }: { rotulo: string; dica?: string; ligada: boolean; aoMudar: (v: boolean) => void }) {
   return (
@@ -133,7 +134,7 @@ export function Perfil() {
         <section className="pilha">
           <h2 className="titulo-2">Seus dados</h2>
           <div className="cartao plano pilha">
-            <p className="pequeno suave">Tudo o que você faz aqui fica guardado neste aparelho. Se você limpar os dados do navegador ou trocar de celular, o progresso não vai junto.</p>
+            <Conta />
             {confirmar ? (
               <>
                 <p>

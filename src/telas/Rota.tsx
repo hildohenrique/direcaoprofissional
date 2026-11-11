@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEstado } from '@/nucleo/estado';
 import { andamento, nosDaRota, type No } from '@/nucleo/rota';
@@ -93,8 +93,10 @@ export function Rota() {
   const [marcador, setMarcador] = useState(anterior ?? alvo);
   const refAtual = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    refAtual.current?.scrollIntoView({ block: 'center' });
+  /* abre o mapa já na parada atual (depois que a troca de tela leva a rolagem ao topo) */
+  useEffect(() => {
+    const t = setTimeout(() => refAtual.current?.scrollIntoView({ block: 'center' }), 60);
+    return () => clearTimeout(t);
   }, []);
   useEffect(() => {
     const t = setTimeout(() => setMarcador(alvo), 350);

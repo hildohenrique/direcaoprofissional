@@ -212,6 +212,8 @@ export interface Ajustes {
 export interface Estado {
   v: 1;
   criadoEm: string;
+  /** última alteração, usada para decidir qual cópia vale ao juntar aparelhos */
+  atualizadoEm: string;
   perfil: Perfil | null;
   caminho: IdCaminho | null;
   concluidas: Record<string, Conclusao>;

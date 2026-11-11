@@ -4,6 +4,7 @@ import { acharMissao, acharParada, rotaDoEstado, ROTULOS_DOS_TEXTOS } from '@/co
 import { CAMINHOS } from '@/conteudo/caminhos';
 import { clientesNecessarios, custoTotal, fraseDaOferta, precoMinimo, totalGanhos, valorHora } from '@/nucleo/contas';
 import { reais } from '@/nucleo/formato';
+import { tokenDaConta } from '@/nucleo/nuvem';
 
 const IDADE = { m16: 'menos de 16 anos', '16-17': '16 ou 17 anos', '18-24': '18 a 24 anos', '25-39': '25 a 39 anos', '40-59': '40 a 59 anos', '60+': '60 anos ou mais' };
 const SITUACAO = { estudando: 'estudando', desempregado: 'sem trabalho no momento', clt: 'empregado com carteira', autonomo: 'trabalha por conta', casa: 'cuida da casa e da família', aposentado: 'aposentado' };
@@ -63,7 +64,7 @@ export async function perguntarAoNorte(mensagens: { de: 'voce' | 'norte'; texto:
   try {
     resposta = await fetch('/api/norte', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', ...(tokenDaConta() ? { authorization: `Bearer ${tokenDaConta()}` } : {}) },
       body: JSON.stringify({ mensagens: mensagens.slice(-24), contexto: contextoParaNorte(e) }),
       signal: sinal,
     });

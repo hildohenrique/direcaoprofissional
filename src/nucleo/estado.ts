@@ -33,6 +33,7 @@ export function estadoInicial(): Estado {
   return {
     v: 1,
     criadoEm: new Date().toISOString(),
+    atualizadoEm: new Date().toISOString(),
     perfil: null,
     caminho: null,
     concluidas: {},
@@ -86,6 +87,7 @@ export function lerEstado(): Estado {
 export function mudar(receita: (rascunho: Estado) => void) {
   const rascunho = structuredClone(estado);
   receita(rascunho);
+  rascunho.atualizadoEm = new Date().toISOString();
   estado = rascunho;
   salvar();
   ouvintes.forEach((f) => f());
@@ -95,6 +97,12 @@ export function substituirEstado(novo: Estado) {
   estado = novo;
   salvar();
   ouvintes.forEach((f) => f());
+}
+
+/** Para quem precisa reagir a mudanças fora do React (a cópia na nuvem). */
+export function aoMudar(f: () => void) {
+  ouvintes.add(f);
+  return () => ouvintes.delete(f);
 }
 
 function assinar(f: () => void) {

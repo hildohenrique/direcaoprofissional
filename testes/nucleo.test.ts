@@ -80,3 +80,30 @@ describe('ritmo e datas', () => {
     expect(reais(7.5)).toBe('R$ 7,50');
   });
 });
+
+import { mesclar } from '../src/nucleo/mesclar';
+import { estadoInicial } from '../src/nucleo/estado';
+
+describe('juntar dois aparelhos', () => {
+  const feita = (em: string) => ({ em, acertos: 1, total: 1 });
+  it('soma as conquistas e fica com as escolhas da cópia mais recente', () => {
+    const celular = { ...estadoInicial(), atualizadoEm: '2026-11-10T10:00:00Z', perfil: { ...base, nome: 'Ana' }, caminho: 'comida' as const, concluidas: { 'partida.troca': feita('2026-11-01') }, dias: ['2026-11-01'], ganhos: [{ id: 'a', em: '2026-11-01', valor: 20, de: 'bolo' }] };
+    const computador = { ...estadoInicial(), atualizadoEm: '2026-11-11T10:00:00Z', perfil: { ...base, nome: 'Ana Paula' }, caminho: 'vendas' as const, concluidas: { 'partida.troca': feita('2026-11-05'), 'partida.pequeno': feita('2026-11-06') }, dias: ['2026-11-06'], ganhos: [{ id: 'b', em: '2026-11-06', valor: 50, de: 'blusa' }] };
+    const junto = mesclar(celular, computador);
+    expect(junto.perfil?.nome).toBe('Ana Paula');
+    expect(junto.caminho).toBe('vendas');
+    expect(Object.keys(junto.concluidas).sort()).toEqual(['partida.pequeno', 'partida.troca']);
+    expect(junto.concluidas['partida.troca'].em).toBe('2026-11-01');
+    expect(junto.dias).toEqual(['2026-11-01', '2026-11-06']);
+    expect(junto.ganhos.map((g) => g.id)).toEqual(['a', 'b']);
+    expect(mesclar(computador, celular)).toEqual(junto);
+  });
+  it('um aparelho novo e vazio não apaga o progresso da conta', () => {
+    const conta = { ...estadoInicial(), atualizadoEm: '2026-11-01T10:00:00Z', perfil: base, caminho: 'servicos' as const, concluidas: { 'partida.troca': feita('2026-11-01') } };
+    const novo = { ...estadoInicial(), atualizadoEm: '2026-11-11T10:00:00Z' };
+    const junto = mesclar(novo, conta);
+    expect(junto.perfil).toEqual(base);
+    expect(junto.caminho).toBe('servicos');
+    expect(junto.concluidas['partida.troca']).toBeTruthy();
+  });
+});
