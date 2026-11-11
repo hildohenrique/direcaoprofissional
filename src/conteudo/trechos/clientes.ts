@@ -53,7 +53,7 @@ export const clientes: Trecho = {
           k: 'Seu palpite',
           pergunta: 'Dona Cida também escolheu: os pedreiros da obra da esquina. Quanto um pedreiro que compra uma marmita de R$ 20 de segunda a sexta paga a ela em um mês de 4 semanas?',
           min: 100,
-          max: 800,
+          max: 1000,
           passo: 20,
           resposta: 400,
           formato: 'reais',
@@ -143,7 +143,7 @@ export const clientes: Trecho = {
           tipo: 'escolha',
           pergunta: 'O que faltava na mensagem do Rafa?',
           opcoes: [
-            { texto: 'Um portfólio mais bonito, com logo e capa', retorno: 'Mostrar trabalho ajuda, mas o dono da loja ainda ficaria sem saber o que ganha, como funciona e quanto custa. São essas dúvidas que fazem a pessoa sumir.' },
+            { texto: 'Uma mostra de trabalhos mais bonita, com logo e capa', retorno: 'Mostrar trabalho ajuda, mas o dono da loja ainda ficaria sem saber o que ganha, como funciona e quanto custa. São essas dúvidas que fazem a pessoa sumir.' },
             { texto: 'Dizer o que a loja ganha, como funciona e quanto custa', certa: true, retorno: 'Isso. "Edito vídeos" deixa todo o trabalho de imaginar com o dono da loja. Ele tem mais o que fazer, então não responde.' },
             { texto: 'Insistir: mandar de novo todo dia até responderem', retorno: 'Repetir uma mensagem vaga é o que as pessoas chamam de vendedor chato. O problema estava na mensagem, e mandar mais vezes não conserta isso.' },
           ],
@@ -171,10 +171,10 @@ export const clientes: Trecho = {
         },
         {
           tipo: 'escolha',
-          pergunta: 'Duas manicures divulgam no status. Uma escreve "valores no privado". A outra escreve "pé e mão R$ 45". O que tende a acontecer?',
+          pergunta: 'Duas manicures divulgam no status. Uma escreve "valores no privado". A outra escreve "pé e mão R$ 30". O que tende a acontecer?',
           opcoes: [
             { texto: 'A do "valores no privado" conversa com mais gente e fecha mais', retorno: 'Algumas pessoas perguntam, sim. Mas muitas desistem antes: têm medo de achar caro e ficar sem graça de recusar. Essas ela nem fica sabendo que perdeu.' },
-            { texto: 'A do preço espanta as clientes, que acham caro e nem chamam', retorno: 'Quem acha R$ 45 caro também não fecharia depois de perguntar no privado. O preço à vista poupa o tempo das duas.' },
+            { texto: 'A do preço espanta as clientes, que acham caro e nem chamam', retorno: 'Quem acha R$ 30 caro também não fecharia depois de perguntar no privado. O preço à vista poupa o tempo das duas.' },
             { texto: 'A do preço recebe menos curiosos e mais gente pronta para marcar', certa: true, retorno: 'Isso. Quem chama já viu o valor e sabe que cabe no bolso. A conversa começa no horário, e o preço já ficou para trás.' },
           ],
         },
@@ -185,7 +185,7 @@ export const clientes: Trecho = {
           cena: {
             tipo: 'comparar',
             a: { titulo: 'Sem preço', tom: 'ruim', linhas: ['"Valores no privado"', 'Quem tem vergonha some'] },
-            b: { titulo: 'Com preço', tom: 'bom', linhas: ['"Pé e mão R$ 45"', 'Quem chama já quer marcar'] },
+            b: { titulo: 'Com preço', tom: 'bom', linhas: ['"Pé e mão R$ 30"', 'Quem chama já quer marcar'] },
           },
         },
         {
@@ -289,14 +289,14 @@ export const clientes: Trecho = {
           tipo: 'ferramenta',
           ferramenta: 'lista-quente',
           t: 'Monte a sua lista quente',
-          texto: 'Abra a agenda e as conversas do WhatsApp. Anote até 20 pessoas que parecem com o cliente que você descreveu ou que convivem com gente assim. Não decida por elas quem vai querer: quem decide é quem recebe a oferta.',
+          texto: 'Abra a agenda e as conversas do WhatsApp. Anote de 5 a 20 pessoas que parecem com o cliente que você descreveu ou que convivem com gente assim. Só o primeiro nome basta. Não decida por elas quem vai querer: quem decide é quem recebe a oferta.',
         },
         {
           tipo: 'estimativa',
           k: 'A conta da Jéssica',
           pergunta: 'Jéssica mandou a oferta para 20 conhecidas e 4 marcaram. Mantendo essa proporção, quantas ofertas ela precisa fazer para chegar a 10 clientes?',
           min: 10,
-          max: 100,
+          max: 130,
           passo: 5,
           resposta: 50,
           formato: 'numero',
@@ -451,7 +451,7 @@ export const clientes: Trecho = {
             {
               de: 'voce',
               opcoes: [
-                { texto: '20', nota: 'ruim', retorno: 'O preço sozinho deixa a cliente com um número e nenhuma informação. Ela não sabe o que vem nem se dá para comer hoje, e precisa perguntar tudo.', resposta: 'Tá... É que eu só saio pro almoço 12h30, dá?' },
+                { texto: '20', nota: 'ruim', retorno: 'O preço sozinho deixa a cliente com um número e nenhuma informação. Ela não sabe o que vem nem se dá para comer hoje, e precisa perguntar tudo.', resposta: 'Tá… É que eu só saio pro almoço 12h30, dá?' },
                 { texto: 'Oi, bom dia! É R$ 20. Vem arroz, feijão, salada e carne.', nota: 'ok', retorno: 'Você disse o valor e o que inclui, o que já ajuda. Faltaram as opções do dia, o horário de entrega e uma pergunta no fim. Agora é a cliente que precisa puxar a conversa.', resposta: 'Hum, tá. É que eu só saio pro almoço 12h30, dá?' },
                 { texto: 'Oi! A marmita é R$ 20: arroz, feijão, salada e uma carne. Hoje tem frango assado ou carne de panela. Entrego até 12h. Qual você prefere?', nota: 'boa', retorno: 'Valor, o que inclui, horário e duas opções, com uma pergunta de escolha no fim. A cliente decide sem precisar perguntar mais nada.', resposta: 'Carne de panela! Mas eu só saio pro almoço 12h30, dá?' },
               ],
@@ -536,7 +536,7 @@ export const clientes: Trecho = {
           quem: 'jessica',
           k: 'A história da Jéssica',
           t: 'O desconto no reflexo',
-          texto: 'Uma cliente nova, a Carla, ouviu o preço e respondeu: "Nossa, tá caro". Jéssica ficou sem graça e tirou R$ 10 na hora. Carla marcou. No mês seguinte pediu o desconto de novo, e a prima dela já chegou perguntando pelo "preço da Carla".',
+          texto: 'Uma cliente nova, a Carla, ouviu o preço e respondeu: "Nossa, tá caro". Jéssica ficou sem graça e tirou R$ 5 na hora. Carla marcou. No mês seguinte pediu o desconto de novo, e a prima dela já chegou perguntando pelo "preço da Carla".',
           cena: { tipo: 'pessoa', quem: 'jessica', humor: 'preocupado', fala: 'Agora todo mundo quer o desconto.' },
         },
         {
@@ -545,7 +545,7 @@ export const clientes: Trecho = {
           opcoes: [
             { texto: 'Que o primeiro preço não vale e que reclamar funciona', certa: true, retorno: 'Isso. A Carla aprendeu que basta dizer "tá caro" para pagar menos, e contou para a prima. O desconto de um dia virou o preço de sempre.' },
             { texto: 'Que ela é uma profissional flexível e fácil de lidar', retorno: 'A intenção era essa. Mas quem baixa o preço sem motivo passa outra mensagem: que o valor cheio era um chute.' },
-            { texto: 'Que o serviço dela vale mais que o das outras', retorno: 'Aconteceu o contrário. Um preço que cai R$ 10 em um segundo parece um preço que nunca valeu aquilo.' },
+            { texto: 'Que o serviço dela vale mais que o das outras', retorno: 'Aconteceu o contrário. Um preço que cai R$ 5 em um segundo parece um preço que nunca valeu aquilo.' },
           ],
         },
         {
@@ -579,13 +579,13 @@ export const clientes: Trecho = {
         {
           tipo: 'estimativa',
           k: 'A conta do desconto',
-          pergunta: 'Um serviço custa R$ 100. Desses, R$ 75 pagam material, transporte e contas, e R$ 25 sobram para quem fez. A pessoa dá 10% de desconto. Quanto da sobra vai embora?',
-          min: 0,
-          max: 60,
-          passo: 5,
-          resposta: 40,
-          formato: 'porcento',
-          retorno: '10% de R$ 100 são R$ 10. Os custos continuam em R$ 75, então a sobra cai de R$ 25 para R$ 15. Foram embora R$ 10 de cada R$ 25: 40% da sobra. Todo desconto sai da parte que ficaria com você. No trecho do dinheiro você calcula a sua sobra com os seus números.',
+          pergunta: 'Um serviço custa R$ 100. Desses, R$ 75 pagam material, transporte e contas, e R$ 25 sobram para quem fez. Em 6 serviços, a sobra é de R$ 150. Dando 10% de desconto em todos, quantos serviços a pessoa precisa fazer para juntar a mesma sobra?',
+          min: 6,
+          max: 20,
+          passo: 1,
+          resposta: 10,
+          formato: 'numero',
+          retorno: 'Com o desconto, entram R$ 90 por serviço. Os custos continuam em R$ 75, então a sobra cai de R$ 25 para R$ 15. Para juntar os mesmos R$ 150: 150 ÷ 15 = 10 serviços. São 4 a mais, só para ficar no mesmo lugar. Todo desconto sai da parte que ficaria com você. No trecho do dinheiro você calcula o seu preço mínimo com os seus números.',
         },
         {
           tipo: 'conversa',
@@ -626,7 +626,7 @@ export const clientes: Trecho = {
           quem: 'jessica',
           k: 'A história da Jéssica',
           t: 'Três respostas diferentes',
-          texto: 'Semanas depois, outra cliente disse "tá caro". Jéssica contou o que estava incluso e ofereceu só a mão, que custa menos. A cliente marcou a mão. Uma terceira avisou que tinha achado mais barato em outro salão. Jéssica desejou bom atendimento e passou o horário para quem estava esperando.',
+          texto: 'Semanas depois, outra cliente disse "tá caro". Jéssica contou o que estava incluso e ofereceu só a mão, que custa menos. A cliente marcou a mão. Uma terceira avisou que tinha achado mais barato com outra manicure. Jéssica desejou bom atendimento e passou o horário para quem estava esperando.',
           cena: { tipo: 'pessoa', quem: 'jessica', humor: 'feliz', fala: 'Meu preço ficou onde estava.' },
         },
         {
@@ -680,7 +680,7 @@ export const clientes: Trecho = {
       'Abra a lista quente e escolha 10 pessoas, começando por quem torce por você.',
       'Mande a sua oferta para cada uma, em mensagem individual e com o nome da pessoa. Três ou quatro por dia.',
       'Quando alguém perguntar, responda com a sua mensagem que resolve: valor, o que inclui, tempo e duas opções.',
-      'Anote na lista o que cada pessoa respondeu: comprou, se interessou, agora não ou sem resposta.',
+      'Atualize na lista quente o estado de cada pessoa: falei, interessou, comprou ou agora não.',
       'A quem disser "agora não", pergunte se conhece alguém que precise.',
       'Quando o primeiro pagamento entrar, confira se o dinheiro apareceu na conta e registre nos ganhos da maleta.',
     ],

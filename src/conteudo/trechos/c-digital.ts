@@ -54,7 +54,7 @@ export const cDigital: Trecho = {
         {
           tipo: 'fala',
           t: 'Cinco serviços. Escolha um para começar',
-          texto: 'Assistente virtual é quem cuida, a distância, da agenda, das mensagens e das tarefas de um profissional. Com um serviço só, fica mais fácil treinar, explicar o que você faz e ser lembrado.',
+          texto: 'Todos cabem no celular. Assistente virtual é quem cuida, a distância, da agenda, das mensagens e das tarefas de um profissional. Com um serviço só, fica mais fácil treinar, explicar o que você faz e ser lembrado.',
           cena: {
             tipo: 'lista',
             itens: [{ texto: 'Cuidar do Instagram de um negócio' }, { texto: 'Artes no Canva' }, { texto: 'Edição de vídeos curtos no CapCut' }, { texto: 'Atendimento pelo WhatsApp' }, { texto: 'Assistente virtual' }],
@@ -258,7 +258,7 @@ export const cDigital: Trecho = {
           tipo: 'escrever',
           pergunta: 'Quais três negócios do seu bairro vão receber uma amostra, e o que você vai criar para cada um?',
           ajuda: 'Negócios que existem, com nome. A amostra resolve algo que falta no perfil deles.',
-          exemplo: 'Pet shop da esquina: vídeo de 15 segundos do banho e tosa. Salão da Paula: arte com a tabela de preços. Mercadinho da esquina: arte das ofertas do fim de semana.',
+          exemplo: 'Pet shop da esquina: vídeo de 15 segundos do banho e tosa. Salão da Paula: arte com a tabela de preços. Mercadinho da minha rua: arte das ofertas do fim de semana.',
           chave: 'digital-tres-amostras',
           rotulo: 'Minhas três amostras',
         },
@@ -368,14 +368,14 @@ export const cDigital: Trecho = {
         {
           tipo: 'conversa',
           k: 'Sua vez',
-          contexto: 'Você é o Rafa. A Jéssica, manicure em Frutal, é sua cliente a distância: ela grava as unhas e você edita. O pacote dela é de 10 vídeos por mês.',
-          contato: 'Jéssica',
+          contexto: 'Você é o Rafa. A Dona Sueli, da loja de roupas, é uma das suas clientes fixas. O pacote dela é de 10 vídeos por mês.',
+          contato: 'Dona Sueli',
           trocas: [
-            { de: 'outro', texto: 'Rafa, amei os vídeos da semana! Aproveitando: faz só mais uma coisinha pra mim? Um cartão de visita e a tabela de preços nova. É rapidinho, né? 🙏' },
+            { de: 'outro', texto: 'Rafa, amei os vídeos da semana! Aproveitando: faz só mais uma coisinha pra mim? Um cartão de visita e a arte da promoção de sábado. É rapidinho, né? 🙏' },
             {
               de: 'voce',
               opcoes: [
-                { texto: 'Que bom que gostou! Faço sim. Cartão e tabela ficam fora do pacote, que é só de vídeos. Os dois juntos saem por R$ 60, e entrego até sexta. Posso fazer?', nota: 'boa', retorno: 'Você disse sim ao pedido, mostrou o limite sem bronca e deu preço e prazo. O "só mais uma coisinha" virou venda.', resposta: 'Ah, achei que tava incluso. Mas tá certo, pode fazer!' },
+                { texto: 'Que bom que gostou! Faço sim. Cartão e arte ficam fora do pacote, que é só de vídeos. Os dois juntos saem por R$ 60, e entrego até sexta. Posso fazer?', nota: 'boa', retorno: 'Você disse sim ao pedido, mostrou o limite sem bronca e deu preço e prazo. O "só mais uma coisinha" virou venda.', resposta: 'Ah, achei que tava incluso. Mas tá certo, pode fazer!' },
                 { texto: 'Faço sim, pode deixar comigo.', nota: 'ok', retorno: 'Uma cortesia de vez em quando agrada. Mas você não disse que era extra, e no mês que vem o pedido volta como obrigação. Se for dar, avise: "Isto fica fora do pacote, desta vez é presente."', resposta: 'Você é um anjo! Depois te peço mais umas coisinhas.' },
                 { texto: 'Isso não está no combinado. Não faço.', nota: 'ruim', retorno: 'O limite está certo, mas o jeito afastou a cliente. Um pedido extra é uma chance de vender mais para quem já confia em você. Diga o preço e o prazo.', resposta: 'Nossa, calma. Era só uma pergunta.' },
               ],
@@ -384,8 +384,8 @@ export const cDigital: Trecho = {
             {
               de: 'voce',
               opcoes: [
-                { texto: 'Cliente nova eu não consigo garantir: depende também do preço, do atendimento e da agenda. Garanto os 10 vídeos no prazo, e todo mês te mando o resumo do que saiu.', nota: 'boa', retorno: 'Você prometeu o que controla, que é a entrega. E deixou claro, sem enrolar, que o resultado depende de mais coisas.', resposta: 'Justo. Prefiro assim do que promessa.' },
-                { texto: 'Difícil dizer um número, mas vai aumentar bastante.', nota: 'ok', retorno: '"Bastante" ainda é promessa. Se a agenda não encher, a cobrança cai em você. Diga o que está na sua mão: os vídeos e o prazo.', resposta: 'Tomara! Tô contando com isso.' },
+                { texto: 'Cliente nova eu não consigo garantir: depende também do preço, do atendimento e do movimento. Garanto os 10 vídeos no prazo, e todo mês te mando o resumo do que saiu.', nota: 'boa', retorno: 'Você prometeu o que controla, que é a entrega. E deixou claro, sem enrolar, que o resultado depende de mais coisas.', resposta: 'Justo. Prefiro assim do que promessa.' },
+                { texto: 'Difícil dizer um número, mas vai aumentar bastante.', nota: 'ok', retorno: '"Bastante" ainda é promessa. Se a loja não encher, a cobrança cai em você. Diga o que está na sua mão: os vídeos e o prazo.', resposta: 'Tomara! Tô contando com isso.' },
                 { texto: 'Pode contar com umas 10 clientes novas por mês.', nota: 'ruim', retorno: 'Você não controla o preço dela, o atendimento nem o movimento da cidade. Prometer um resultado que depende de tudo isso transforma um bom trabalho em dívida.', resposta: 'Dez? Maravilha. Vou cobrar, hein!' },
               ],
             },

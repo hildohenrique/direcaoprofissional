@@ -19,7 +19,7 @@ export const cTecnologia: Trecho = {
           quem: 'davi',
           k: 'A história do Davi',
           t: 'Quatro portas em seis meses',
-          texto: 'Davi tem 23 anos, trabalha de dia em uma loja de Fortaleza e estuda à noite. Em seis meses, começou cursos de programação, de sites, de dados e de IA. Cada vídeo dizia que aquela era a área do futuro. Ele sabia um pouco de tudo e não tinha nada pronto para mostrar.',
+          texto: 'Davi tem 23 anos, trabalha de dia em uma loja de Fortaleza e estuda à noite. Em seis meses, começou cursos de programação, de sites, de dados e de inteligência artificial (IA). Cada vídeo dizia que aquela era a área do futuro. Ele sabia um pouco de tudo e não tinha nada pronto para mostrar.',
           cena: { tipo: 'pessoa', quem: 'davi', humor: 'pensando', fala: 'Qual é a área certa?' },
         },
         {
@@ -198,7 +198,7 @@ export const cTecnologia: Trecho = {
           k: 'Seu palpite',
           pergunta: 'Uma hora por dia parece pouco. Estudando 1 hora por dia, 6 dias por semana, quantas horas você soma em um ano de 50 semanas?',
           min: 50,
-          max: 500,
+          max: 700,
           passo: 10,
           resposta: 300,
           formato: 'horas',
@@ -286,7 +286,7 @@ export const cTecnologia: Trecho = {
           tipo: 'escolha',
           pergunta: 'A dona de uma loja quer um site e conversa com três pessoas. Quem ela tende a contratar?',
           opcoes: [
-            { texto: 'Quem mostra dez certificados de curso', retorno: 'Certificado mostra que a pessoa estudou. A dona da loja continua sem saber como fica um site feito por ela.' },
+            { texto: 'Quem mostra dez certificados de curso', retorno: 'Certificado mostra que a pessoa estudou. A dona da loja continua sem saber como fica um site feito por essa pessoa.' },
             { texto: 'Quem abre no celular a página que fez para a lanchonete do bairro', certa: true, retorno: 'Isso. Ela vê, clica e imagina a loja dela ali. Um trabalho pronto responde à pergunta que mais importa: "Você consegue fazer?"' },
             { texto: 'Quem diz que aprende rápido e cobra barato', retorno: 'Preço baixo sem nada para mostrar aumenta a dúvida. O que ela procura é a certeza de que o site vai funcionar.' },
           ],

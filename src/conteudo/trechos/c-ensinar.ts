@@ -40,7 +40,7 @@ export const cEnsinar: Trecho = {
         {
           tipo: 'fala',
           t: 'O que as pessoas pagam para aprender',
-          texto: 'Quase tudo o que alguém faz bem, outra pessoa quer aprender. Algumas áreas têm regra própria, como treino físico, que pede profissional registrado. Na dúvida, confira antes de anunciar.',
+          texto: 'Quase tudo o que alguém faz bem, outra pessoa quer aprender. Algumas atividades têm regra própria para quem ensina. Na dúvida, confira antes de anunciar.',
           pontos: ['Reforço escolar: tabuada, leitura, redação', 'Música, idioma e esporte', 'Costura, crochê e culinária', 'Celular e banco digital para pessoas mais velhas'],
         },
         {
@@ -158,7 +158,7 @@ export const cEnsinar: Trecho = {
           k: 'A história da Dona Neuza',
           t: 'A aluna que não voltou',
           texto: 'Na primeira aula, Dona Neuza falou 40 minutos sobre tipos de tecido, agulha e linha. Quando a aluna enfim pegou a calça, errou o ponto. Neuza tirou o tecido da mão dela e terminou a barra. A aluna agradeceu, pagou e não marcou a segunda aula.',
-          cena: { tipo: 'pessoa', quem: 'neuza', humor: 'pensando', fala: 'Mas eu expliquei tudo...' },
+          cena: { tipo: 'pessoa', quem: 'neuza', humor: 'pensando', fala: 'Mas eu expliquei tudo…' },
         },
         {
           tipo: 'escolha',
@@ -223,15 +223,15 @@ export const cEnsinar: Trecho = {
           tipo: 'conversa',
           k: 'Sua vez',
           contexto: 'Você é a Bia. Deu três aulas de reforço para o Caio, do 5º ano. A mãe dele mandou mensagem.',
-          contato: 'Sandra, mãe do Caio',
+          contato: 'Cláudia, mãe do Caio',
           trocas: [
             { de: 'outro', texto: 'Oi, Bia. O Caio tirou 5 na prova de ontem. Achei que com o reforço ele ia melhorar mais rápido. Tô pensando em parar.' },
             {
               de: 'voce',
               opcoes: [
-                { texto: 'Oi, Sandra. Entendo. Em três aulas, ele já faz a tabuada até o 6 sem olhar. A prova cobrou fração, que começa nesta semana. Posso te mandar o que ele já faz sozinho?', nota: 'boa', retorno: 'Você acolheu a preocupação e mostrou um avanço concreto, que a mãe ainda não tinha visto. Também explicou a nota sem culpar ninguém.', resposta: 'Não sabia que ele já fazia a tabuada sozinho. Manda, sim. E a fração, quanto tempo leva?' },
-                { texto: 'Oi, Sandra. Matemática é assim mesmo, demora um pouco para aparecer na nota. Vamos continuar mais um tempo, que eu tenho certeza de que ele melhora.', nota: 'ok', retorno: 'Você pediu confiança sem mostrar nada. A mãe precisa ver o que mudou em três aulas, com um exemplo.', resposta: 'Não sei, Bia. O que ele aprendeu até agora? E a fração, quanto tempo leva?' },
-                { texto: 'Oi, Sandra. Na aula ele vai bem e faz tudo certo comigo. Se foi mal na prova, é porque não está estudando em casa nos outros dias.', nota: 'ruim', retorno: 'Pode até ser verdade, mas soou como acusação. A mãe se defende, e a conversa deixa de ser sobre o que fazer daqui para a frente.', resposta: 'Ele estuda, sim. Mas me diz: quanto tempo isso ainda leva?' },
+                { texto: 'Oi, Cláudia. Entendo. Em três aulas, ele já faz a tabuada até o 6 sem olhar. A prova cobrou fração, que começa nesta semana. Posso te mandar o que ele já faz sozinho?', nota: 'boa', retorno: 'Você acolheu a preocupação e mostrou um avanço concreto, que a mãe ainda não tinha visto. Também explicou a nota sem culpar ninguém.', resposta: 'Não sabia que ele já fazia a tabuada sozinho. Manda, sim. E a fração, quanto tempo leva?' },
+                { texto: 'Oi, Cláudia. Matemática é assim mesmo, demora um pouco para aparecer na nota. Vamos continuar mais um tempo, que eu tenho certeza de que ele melhora.', nota: 'ok', retorno: 'Você pediu confiança sem mostrar nada. A mãe precisa ver o que mudou em três aulas, com um exemplo.', resposta: 'Não sei, Bia. O que ele aprendeu até agora? E a fração, quanto tempo leva?' },
+                { texto: 'Oi, Cláudia. Na aula ele vai bem e faz tudo certo comigo. Se foi mal na prova, é porque não está estudando em casa nos outros dias.', nota: 'ruim', retorno: 'Pode até ser verdade, mas soou como acusação. A mãe se defende, e a conversa deixa de ser sobre o que fazer daqui para a frente.', resposta: 'Ele estuda, sim. Mas me diz: quanto tempo isso ainda leva?' },
               ],
             },
             {

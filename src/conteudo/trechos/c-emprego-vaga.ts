@@ -66,7 +66,7 @@ export const cEmpregoVaga: Trecho = {
           t: 'Onde as vagas estão',
           texto: 'Use mais de um caminho ao mesmo tempo. Candidatar-se é de graça: se pedirem pagamento, desconfie.',
           pontos: [
-            'Sine da sua cidade e aplicativo Carteira de Trabalho Digital',
+            'Sine, o serviço público de emprego da sua cidade, e o aplicativo Carteira de Trabalho Digital',
             'Sites de vagas: Gupy, Indeed, LinkedIn, Vagas.com',
             'CIEE e Nube, para estágio e Jovem Aprendiz',
             'Comércio da sua região: leve o currículo e peça para falar com o gerente',
@@ -231,7 +231,7 @@ export const cEmpregoVaga: Trecho = {
           pontos: [
             'E-mail com o seu nome. Apelido e ano de nascimento ficam de fora',
             'Arquivo em PDF, com o seu nome no nome do arquivo',
-            'Português revisado: peça para alguém ler ou use uma IA',
+            'Português revisado: peça para alguém ler ou use um assistente de inteligência artificial (IA)',
             'A IA corrige o texto. Os fatos são seus: nada de experiência inventada',
           ],
         },
@@ -338,8 +338,8 @@ export const cEmpregoVaga: Trecho = {
         {
           tipo: 'conversa',
           k: 'Sua vez',
-          contexto: 'Semanas depois, outra chance. Você é a Bia, agora preparada, na entrevista para Jovem Aprendiz em um supermercado. A Marta, do RH, faz as perguntas.',
-          contato: 'Marta (RH)',
+          contexto: 'Semanas depois, outra chance. Você é a Bia, agora preparada, na entrevista para Jovem Aprendiz em um supermercado. A Helena, do RH, o setor que cuida das contratações, faz as perguntas.',
+          contato: 'Helena (RH)',
           trocas: [
             { de: 'outro', texto: 'Bia, por que você quer trabalhar aqui?' },
             {
@@ -434,7 +434,7 @@ export const cEmpregoVaga: Trecho = {
           quem: 'bia',
           k: 'A história da Bia',
           t: 'Duas semanas de silêncio',
-          texto: 'Depois da entrevista no supermercado, Bia esperou. A Marta tinha prometido retorno até sexta. Passaram duas semanas e ninguém ligou. Com o currículo novo, ela tinha feito só 3 candidaturas: um não e dois silêncios. "Acho que eu não sirvo para isso."',
+          texto: 'Depois da entrevista no supermercado, Bia esperou. A Helena tinha prometido retorno até sexta. Passaram duas semanas e ninguém ligou. Com o currículo novo, ela tinha feito só 3 candidaturas: um não e dois silêncios. "Acho que eu não sirvo para isso."',
           cena: { tipo: 'pessoa', quem: 'bia', humor: 'preocupado', fala: 'Acho que eu não sirvo para isso.' },
         },
         {
@@ -457,7 +457,7 @@ export const cEmpregoVaga: Trecho = {
           k: 'Seu palpite',
           pergunta: 'Quem está sem trabalho e faz 5 candidaturas por dia, 5 dias por semana, chega a quantas em 4 semanas?',
           min: 20,
-          max: 200,
+          max: 260,
           passo: 10,
           resposta: 100,
           formato: 'numero',
@@ -489,7 +489,7 @@ export const cEmpregoVaga: Trecho = {
         },
         {
           tipo: 'escolha',
-          pergunta: 'A Marta prometeu retorno até sexta. O prazo passou e ninguém ligou. O que a Bia faz?',
+          pergunta: 'Volte à espera do supermercado: a Helena prometeu retorno até sexta, o prazo passou e ninguém ligou. Nessa hora, o que a Bia faz?',
           opcoes: [
             { texto: 'Manda uma mensagem curta: agradece, diz que continua interessada e pergunta se há novidade', certa: true, retorno: 'Isso. Cobrar retorno com educação mostra interesse. Às vezes a vaga só atrasou, e quem aparece na hora certa é lembrado.' },
             { texto: 'Espera quieta, para não parecer chata', retorno: 'Uma mensagem educada depois do prazo combinado é normal e esperada. O silêncio pode ser lido como falta de interesse.' },
@@ -500,7 +500,7 @@ export const cEmpregoVaga: Trecho = {
           tipo: 'escrever',
           pergunta: 'Escreva a mensagem para mandar no dia seguinte a uma entrevista',
           ajuda: 'Agradeça, cite um ponto da conversa e diga que continua interessado. Três linhas bastam.',
-          exemplo: 'Bom dia, Marta. Obrigada pela entrevista de ontem. Gostei de saber como funciona o treinamento dos aprendizes. Continuo muito interessada na vaga e fico à disposição. Bia',
+          exemplo: 'Bom dia, Helena. Obrigada pela entrevista de ontem. Gostei de saber como funciona o treinamento dos aprendizes. Continuo muito interessada na vaga e fico à disposição. Bia',
           chave: 'mensagem-pos-entrevista',
           rotulo: 'Mensagem depois da entrevista',
         },

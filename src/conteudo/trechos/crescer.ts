@@ -24,7 +24,7 @@ export const crescer: Trecho = {
         {
           tipo: 'estimativa',
           k: 'Seu palpite',
-          pergunta: 'O primeiro dinheiro do Rafa foram R$ 120. Se a loja de ração continuar com o pacote de R$ 300 por mês, quanto ela paga ao Rafa em um ano?',
+          pergunta: 'O primeiro dinheiro do Rafa foi de R$ 120. Se a loja de ração continuar com o pacote de R$ 300 por mês, quanto ela paga ao Rafa em um ano?',
           min: 500,
           max: 8000,
           passo: 100,
@@ -62,15 +62,15 @@ export const crescer: Trecho = {
         {
           tipo: 'conversa',
           k: 'Sua vez',
-          contexto: 'Você é o Rafa e acabou de mandar o último lote de vídeos do mês para a loja de ração. O dono, seu Valdir, responde.',
+          contexto: 'Você é o Rafa e acabou de mandar o último lote de vídeos do mês para a loja de ração. O dono, Seu Valdir, responde.',
           contato: 'Seu Valdir',
           trocas: [
             { de: 'outro', texto: 'Rafa, ficou top! O vídeo do banho e tosa já trouxe 3 clientes 👏' },
             {
               de: 'voce',
               opcoes: [
-                { texto: 'Que notícia boa, seu Valdir! Pra loja não ficar sem vídeo no mês que vem, preciso gravar na primeira semana. Posso ir segunda às 9h ou quarta às 14h. Qual fica melhor?', nota: 'boa', retorno: 'Você disse por que continuar, quando, e ofereceu duas datas. Escolher entre duas é mais fácil do que responder "quer fechar de novo?".', resposta: 'Rapaz, mês que vem é uma correria aqui. Nem sei se vou ter tempo de gravar.' },
-                { texto: 'Valeu, seu Valdir! Quando quiser fazer os do mês que vem, é só me chamar.', nota: 'ok', retorno: 'Educado, mas a volta ficou dependendo da memória de um dono de loja ocupado. "Eu te chamo" costuma virar silêncio, mesmo quando o cliente gostou.', resposta: 'Chamo sim. Só que mês que vem é uma correria aqui, nem sei se vou ter tempo.' },
+                { texto: 'Que notícia boa, Seu Valdir! Pra loja não ficar sem vídeo no mês que vem, preciso gravar na primeira semana. Posso ir segunda às 9h ou quarta às 14h. Qual fica melhor?', nota: 'boa', retorno: 'Você disse por que continuar, quando, e ofereceu duas datas. Escolher entre duas é mais fácil do que responder "quer fechar de novo?".', resposta: 'Rapaz, mês que vem é uma correria aqui. Nem sei se vou ter tempo de gravar.' },
+                { texto: 'Valeu, Seu Valdir! Quando quiser fazer os do mês que vem, é só me chamar.', nota: 'ok', retorno: 'Educado, mas a volta ficou dependendo da memória de um dono de loja ocupado. "Eu te chamo" costuma virar silêncio, mesmo quando o cliente gostou.', resposta: 'Chamo sim. Só que mês que vem é uma correria aqui, nem sei se vou ter tempo.' },
                 { texto: 'Valeu! Se o senhor fechar o mês que vem hoje, faço os 10 por R$ 250.', nota: 'ruim', retorno: 'Você abriu mão de R$ 50 e a loja continuou sem dia marcado. Ele não reclamou do preço. O que traz o cliente de volta é a data combinada.', resposta: 'Opa! Só que mês que vem é uma correria aqui, nem sei se vou ter tempo.' },
               ],
             },
@@ -108,6 +108,12 @@ export const crescer: Trecho = {
           ],
         },
         {
+          tipo: 'ferramenta',
+          ferramenta: 'meta-de-clientes',
+          t: 'De quantos clientes fixos a sua meta precisa',
+          texto: 'Diga quanto quer ganhar no mês, quanto um cliente paga cada vez e quantas vezes ele compra no mês. A conta mostra quantas vendas isso pede e quantos clientes fixos bastam.',
+        },
+        {
           tipo: 'escrever',
           pergunta: 'Escreva as duas mensagens que seguram o cliente: o convite para voltar e a notícia de dois dias depois',
           ajuda: 'No convite, diga por que vale voltar e ofereça duas datas. Se você vende produto, proponha um dia fixo: "Toda segunda eu passo com o pedido da semana?" Na notícia, pergunte se deu tudo certo.',
@@ -129,10 +135,10 @@ export const crescer: Trecho = {
           porque: 'O ano tem 52 semanas. 52 ÷ 4 = 13 vezes, e 13 × R$ 60 = R$ 780. Um cliente fixo vale muito mais que uma venda.',
         },
         {
-          pergunta: 'O cliente elogiou e a conversa está acabando. O que fazer?',
-          opcoes: ['Agradecer e esperar que ele chame', 'Dar um desconto para a próxima vez', 'Oferecer duas datas para a volta'],
+          pergunta: 'O cliente gostou, mas avisa que o mês que vem vai ser corrido e não sabe se terá tempo. O que fazer?',
+          opcoes: ['Esperar a correria passar e ele chamar', 'Dar um desconto para ele fechar logo', 'Reservar uma data, avisar que dá para trocar e confirmar na véspera'],
           certa: 2,
-          porque: 'Quem sai com data marcada volta. Quem sai com "eu te chamo" depende da própria memória.',
+          porque: 'Quem sai com data marcada volta. Com a data e o lembrete por sua conta, o cliente ocupado não precisa lembrar de nada.',
         },
         {
           pergunta: 'Como quem vende produto faz o cliente comprar de novo?',
@@ -154,12 +160,12 @@ export const crescer: Trecho = {
           quem: 'antonio',
           k: 'A história do Seu Antônio',
           t: 'Serviço perfeito, cliente perdida',
-          texto: 'Seu Antônio trocou o chuveiro da dona Lúcia com capricho: fio novo, emenda isolada, dois testes. Só que tinha marcado às 14h, chegou às 14h40 sem avisar e deixou pó de reboco no chão do banheiro. Ela pagou os R$ 60 e nunca mais chamou.',
-          cena: { tipo: 'pessoa', quem: 'antonio', humor: 'pensando', fala: 'Mas o serviço ficou perfeito...' },
+          texto: 'Seu Antônio trocou o chuveiro da Dona Lúcia com capricho: fio novo, emenda isolada, dois testes. Só que tinha marcado às 14h, chegou às 14h40 sem avisar e deixou pó de reboco no chão do banheiro. Ela pagou os R$ 60 e nunca mais chamou.',
+          cena: { tipo: 'pessoa', quem: 'antonio', humor: 'pensando', fala: 'Mas o serviço ficou perfeito…' },
         },
         {
           tipo: 'escolha',
-          pergunta: 'O serviço ficou perfeito. Por que a dona Lúcia não chamou de novo?',
+          pergunta: 'O serviço ficou perfeito. Por que a Dona Lúcia não chamou de novo?',
           opcoes: [
             { texto: 'Porque R$ 60 é caro para trocar um chuveiro', retorno: 'Ela pagou sem reclamar. O preço entrou na conta dela junto com a espera e a sujeira, e foram as duas que pesaram.' },
             { texto: 'Porque ela não sabe reconhecer um serviço bem feito', retorno: 'Ela não entende de fiação, e nem precisa. Ela julga pelo que consegue ver, e cuidar dessa parte também é trabalho de quem atende.' },
@@ -190,7 +196,7 @@ export const crescer: Trecho = {
         {
           tipo: 'fala',
           t: 'Combine antes, pergunte no fim',
-          texto: 'Antes de começar, repita o combinado: o que vai ser feito, quanto custa e quando fica pronto. No fim, pergunte antes de esperar elogio: "Ficou como a senhora queria?" Quem pergunta descobre o problema enquanto ainda dá para arrumar.',
+          texto: 'Antes de começar, repita o combinado: o que vai ser feito, quanto custa e quando fica pronto. No fim, pergunte: "Ficou como a senhora queria?" Se vier um "ficou bom" sem ânimo, insista: "O que eu mudo para ficar ótimo?" Assim o problema aparece a tempo.',
           cena: {
             tipo: 'comparar',
             a: { titulo: 'Esperar o elogio', tom: 'ruim', linhas: ['A cliente sai calada', 'O defeito vira assunto com a vizinha'] },
@@ -241,7 +247,7 @@ export const crescer: Trecho = {
             {
               de: 'voce',
               opcoes: [
-                { texto: 'Desculpa, seu Jorge! Amanhã eu capricho mais.', nota: 'ok', retorno: 'Pedir desculpa é bom, mas ele pagou R$ 20 por uma marmita incompleta e continuou sem solução. Diga o que você vai fazer e quando.', resposta: 'Tá. Mas como foi acontecer isso?' },
+                { texto: 'Desculpa, Seu Jorge! Amanhã eu capricho mais.', nota: 'ok', retorno: 'Pedir desculpa é bom, mas ele pagou R$ 20 por uma marmita incompleta e continuou sem solução. Diga o que você vai fazer e quando.', resposta: 'Tá. Mas como foi acontecer isso?' },
                 { texto: 'Seu Jorge, obrigada por avisar. O erro foi meu na montagem. Levo o frango aí agora, em 15 minutos, ou amanhã a sua marmita é por minha conta. O que o senhor prefere?', nota: 'boa', retorno: 'Você agradeceu, assumiu o erro sem enrolar e ofereceu duas saídas com prazo. Quem escolhe a solução é o cliente.', resposta: 'Pode ser amanhã por sua conta. Mas como foi acontecer isso?' },
                 { texto: 'Estranho, montei todas iguais. O senhor olhou direito embaixo do arroz?', nota: 'ruim', retorno: 'Duvidar do cliente transforma um erro de R$ 20 em um cliente perdido. Mesmo que ele esteja enganado, comece ouvindo.', resposta: 'Olhei, não tinha frango. Como foi acontecer isso?' },
               ],
@@ -251,7 +257,7 @@ export const crescer: Trecho = {
               opcoes: [
                 { texto: 'Montei as 12 com pressa e não conferi. A partir de hoje eu confiro cada uma antes de fechar a tampa. E obrigada por me falar, assim eu consigo consertar.', nota: 'boa', retorno: 'Ele queria saber se vai acontecer de novo. Você explicou em uma frase e disse o que muda. Quem reclama está te dando a chance de consertar.', resposta: 'Tranquilo, Dona Cida. Amanhã separa duas pra mim.' },
                 { texto: 'O senhor é o primeiro que reclama, viu? Ninguém nunca falou nada.', nota: 'ruim', retorno: 'Pode até ser verdade, mas soa como "o problema é o senhor". Muita gente não reclama, só para de comprar. Quem avisa merece agradecimento.', resposta: 'Tá certo. Deixa quieto.' },
-                { texto: 'Foi a correria, seu Jorge. Acontece.', nota: 'ok', retorno: 'É verdade, mas "acontece" avisa que pode acontecer de novo. O cliente quer ouvir o que você vai mudar.', resposta: 'Hum. Tá bom.' },
+                { texto: 'Foi a correria, Seu Jorge. Acontece.', nota: 'ok', retorno: 'É verdade, mas "acontece" avisa que pode acontecer de novo. O cliente quer ouvir o que você vai mudar.', resposta: 'Hum. Tá bom.' },
               ],
             },
           ],
@@ -351,24 +357,24 @@ export const crescer: Trecho = {
         {
           tipo: 'conversa',
           k: 'Sua vez',
-          contexto: 'Você é o Seu Antônio. Ontem consertou a porta da dona Marta. Hoje ela manda mensagem.',
+          contexto: 'Você é o Seu Antônio. Ontem consertou a porta da Dona Marta. Hoje ela manda mensagem.',
           contato: 'Dona Marta',
           trocas: [
             { de: 'outro', texto: 'Seu Antônio, a porta ficou ótima! Nem range mais 👏' },
             {
               de: 'voce',
               opcoes: [
-                { texto: 'Obrigado! Então me indica pra todo mundo do prédio, que eu tô precisando de serviço.', nota: 'ruim', retorno: '"Todo mundo" é vago, e "tô precisando" transforma a oferta em pedido de ajuda. Pergunte se ela conhece alguém que precisa.', resposta: 'Tá... Olha, minha irmã tá com uma torneira pingando.' },
-                { texto: 'Obrigado, dona Marta! Precisando, é só chamar.', nota: 'ok', retorno: 'Educado, mas o elogio passou e você não pediu nada. Era a melhor hora para perguntar se ela conhece alguém.', resposta: 'Pode deixar! Aliás, minha irmã tá com uma torneira pingando.' },
-                { texto: 'Que bom, dona Marta! Fico feliz. A senhora conhece alguém que esteja precisando de um reparo? Pode passar meu contato.', nota: 'boa', retorno: 'Você agradeceu e pediu logo depois do elogio, com uma pergunta leve. Ela decide se passa e para quem.', resposta: 'Minha irmã vive reclamando de uma torneira pingando!' },
+                { texto: 'Obrigado! Então me indica pra todo mundo do prédio, que eu tô precisando de serviço.', nota: 'ruim', retorno: '"Todo mundo" é vago, e "tô precisando" transforma a oferta em pedido de ajuda. Pergunte se ela conhece alguém que precisa.', resposta: 'Tá… Olha, minha irmã tá com uma torneira pingando.' },
+                { texto: 'Obrigado, Dona Marta! Precisando, é só chamar.', nota: 'ok', retorno: 'Educado, mas o elogio passou e você não pediu nada. Era a melhor hora para perguntar se ela conhece alguém.', resposta: 'Pode deixar! Aliás, minha irmã tá com uma torneira pingando.' },
+                { texto: 'Que bom, Dona Marta! Fico feliz. A senhora conhece alguém que esteja precisando de um reparo? Pode passar meu contato.', nota: 'boa', retorno: 'Você agradeceu e pediu logo depois do elogio, com uma pergunta leve. Ela decide se passa e para quem.', resposta: 'Minha irmã vive reclamando de uma torneira pingando!' },
               ],
             },
             {
               de: 'voce',
               opcoes: [
-                { texto: 'Que bom! Fala pra ela me chamar.', nota: 'ok', retorno: 'Agora depende de a dona Marta lembrar, achar o seu número e explicar o que você faz. Cada passo a mais é uma chance de a indicação se perder.', resposta: 'Falo sim!' },
+                { texto: 'Que bom! Fala pra ela me chamar.', nota: 'ok', retorno: 'Agora depende de a Dona Marta lembrar, achar o seu número e explicar o que você faz. Cada passo a mais é uma chance de a indicação se perder.', resposta: 'Falo sim!' },
                 { texto: 'Ótimo! Vou te mandar agora uma mensagem com meu nome e o que eu faço. É só encaminhar pra ela. Pode ser?', nota: 'boa', retorno: 'Você tirou o trabalho das mãos dela. Encaminhar leva cinco segundos, e a irmã recebe o seu contato junto com a recomendação.', resposta: 'Pode! Já encaminho pra ela.' },
-                { texto: 'Me passa o número dela que eu ligo agora mesmo.', nota: 'ruim', retorno: 'Ligar para quem não pediu assusta, e a dona Marta fica exposta por ter passado o número. Deixe a irmã receber o seu contato e decidir.', resposta: 'Ah, deixa eu falar com ela primeiro...' },
+                { texto: 'Me passa o número dela que eu ligo agora mesmo.', nota: 'ruim', retorno: 'Ligar para quem não pediu assusta, e a Dona Marta fica exposta por ter passado o número. Deixe a irmã receber o seu contato e decidir.', resposta: 'Ah, deixa eu falar com ela primeiro…' },
               ],
             },
           ],
@@ -406,11 +412,11 @@ export const crescer: Trecho = {
         },
         {
           tipo: 'escolha',
-          pergunta: 'A dona Marta indicou o Seu Antônio para a irmã. Qual atitude faz a dona Marta nunca mais indicar ninguém?',
+          pergunta: 'A Dona Marta indicou o Seu Antônio para a irmã. Qual atitude faz a Dona Marta nunca mais indicar ninguém?',
           opcoes: [
             { texto: 'Cobrar da irmã os mesmos R$ 60 da visita', retorno: 'Preço igual é o que as duas esperam. Elas vão comparar, e o preço igual protege a indicação.' },
-            { texto: 'Dizer à irmã que um dos serviços ele não faz', retorno: 'Falar a verdade sobre o que você não faz aumenta a confiança. A irmã conta isso para a dona Marta como ponto a favor.' },
-            { texto: 'Marcar com a irmã na terça, não aparecer e só responder na quinta', certa: true, retorno: 'Isso. Quem indica empresta o próprio nome. Quando o indicado some, quem fica sem graça com a irmã é a dona Marta.' },
+            { texto: 'Dizer à irmã que um dos serviços ele não faz', retorno: 'Falar a verdade sobre o que você não faz aumenta a confiança. A irmã conta isso para a Dona Marta como ponto a favor.' },
+            { texto: 'Marcar com a irmã na terça, não aparecer e só responder na quinta', certa: true, retorno: 'Isso. Quem indica empresta o próprio nome. Quando o indicado some, quem fica sem graça com a irmã é a Dona Marta.' },
           ],
         },
         {
@@ -561,7 +567,7 @@ export const crescer: Trecho = {
           tipo: 'escrever',
           pergunta: 'Escreva a vitrine do seu perfil em três linhas',
           ajuda: 'Linha 1: o que você faz e para quem. Linha 2: a cidade ou o bairro. Linha 3: como marcar ou pedir.',
-          exemplo: 'Marmita caseira para quem trabalha o dia todo. Feira de Santana, entrego no Centro. Pedidos pelo WhatsApp até as 9h.',
+          exemplo: 'Marmita caseira para quem trabalha o dia todo. Feira de Santana, entrego no Centro. Pedidos pelo WhatsApp até as 10h.',
           chave: 'vitrine-do-perfil',
           rotulo: 'A vitrine do meu perfil',
         },
@@ -645,7 +651,7 @@ export const crescer: Trecho = {
         {
           tipo: 'fala',
           t: 'Quanto custa manter',
-          texto: 'Em 2026, o boleto mensal do MEI fica entre R$ 82 e R$ 87, conforme a atividade. No valor mais alto, são R$ 1.044 no ano. Ele vence todo mês, mesmo quando você não vendeu nada. E uma vez por ano você declara no portal quanto faturou.',
+          texto: 'Em 2026, o boleto mensal do MEI fica entre R$ 82 e R$ 87, conforme a atividade. No valor mais alto, são R$ 1.044 no ano. Ele vence todo mês, mesmo quando você não vendeu nada. O MEI também entrega uma declaração por ano: veja no portal como fazer.',
           cena: { tipo: 'numero', valor: 1044, formato: 'reais', legenda: '12 boletos de R$ 87, o valor mais alto de 2026' },
         },
         {
@@ -755,7 +761,7 @@ export const crescer: Trecho = {
     ],
     registro: {
       pergunta: 'O que aconteceu com as 3 pessoas e o que mudou no seu perfil?',
-      exemplo: 'Falei com a Rose, a Aline e o seu Carlos. A Rose marcou a próxima faxina para sábado às 9h. A Aline passou meu contato para a cunhada. O seu Carlos não respondeu. No perfil, troquei a foto e escrevi "Faxina em Goiânia, região sul. Marque pelo WhatsApp".',
+      exemplo: 'Falei com a Rose, a Cristina e o Seu Carlos. A Rose marcou a próxima faxina para sábado às 9h. A Cristina passou meu contato para a cunhada. O Seu Carlos não respondeu. No perfil, troquei a foto e escrevi "Faxina em Goiânia, região sul. Marque pelo WhatsApp".',
     },
   },
 };

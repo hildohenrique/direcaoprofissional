@@ -18,15 +18,15 @@ export const dinheiro: Trecho = {
           quem: 'marcos',
           k: 'A história do Marcos',
           t: 'O salário que acaba no dia 20',
-          texto: 'Marcos tem 34 anos e trabalha há 8 em um depósito de Guarulhos. Salário: R$ 2.300. Todo mês, lá pelo dia 20, o dinheiro acaba. "Não sei para onde vai. Eu nem compro nada." Daí até o pagamento, ele vai no cartão de crédito.',
+          texto: 'Marcos tem 34 anos e trabalha há 8 em um depósito de Guarulhos. Quando o salário era de R$ 2.300, o dinheiro acabava todo mês, lá pelo dia 20. "Não sei para onde vai. Eu nem compro nada." Daí até o pagamento, ele ia no cartão de crédito.',
           cena: { tipo: 'pessoa', quem: 'marcos', humor: 'preocupado', fala: 'Eu nem compro nada.' },
         },
         {
           tipo: 'estimativa',
           k: 'Seu palpite',
-          pergunta: 'Marcos gasta R$ 12 por dia de trabalho em salgado e refrigerante na lanchonete ao lado do depósito. São 22 dias de trabalho no mês. Quanto isso soma em um mês?',
-          min: 120,
-          max: 480,
+          pergunta: 'Marcos gastava R$ 12 por dia de trabalho em salgado e refrigerante na lanchonete ao lado do depósito. São 22 dias de trabalho no mês. Quanto isso somava em um mês?',
+          min: 60,
+          max: 600,
           passo: 12,
           resposta: 264,
           formato: 'reais',
@@ -62,7 +62,7 @@ export const dinheiro: Trecho = {
         },
         {
           tipo: 'escolha',
-          pergunta: 'Agora o Marcos sabe: faltam R$ 160 por mês. Qual é o melhor próximo passo?',
+          pergunta: 'Com a soma na mão, o Marcos viu que faltavam R$ 160 por mês. Qual é o melhor próximo passo?',
           opcoes: [
             { texto: 'Cortar de uma vez o lanche, o lazer e tudo o que não for conta', retorno: 'Corte total é difícil de manter por muito tempo. E ele não precisa de tanto: o que falta são R$ 160.' },
             { texto: 'Parar de anotar, porque ver o número dá desânimo', retorno: 'O desânimo é normal no começo. Mas a conta chega do mesmo jeito, só que na fatura do cartão. Com o número na mão, ele pelo menos escolhe.' },
@@ -153,7 +153,7 @@ export const dinheiro: Trecho = {
           tipo: 'estimativa',
           k: 'Seu palpite',
           pergunta: 'De cada marmita de R$ 20, quanto fica com a Cida depois de pagar os ingredientes, a embalagem e o gás?',
-          min: 0,
+          min: 1,
           max: 20,
           passo: 1,
           resposta: 9,
@@ -684,8 +684,8 @@ export const dinheiro: Trecho = {
     passos: [
       'Por 7 dias, anote todo gasto na hora em que ele acontecer, no bloco de notas do celular ou em um papel. Até a bala.',
       'No oitavo dia, some os gastos da semana por categoria e multiplique por 4. Junte os gastos fixos do mês.',
-      'Abra a ferramenta do custo do mês e corrija os valores com o que você anotou.',
-      'Refaça o valor da sua hora com o custo novo.',
+      'Abra na maleta a ferramenta do custo do mês e corrija os valores com o que você anotou.',
+      'Abra a ferramenta do valor da hora: ela já refaz a conta com o custo novo.',
       'Calcule o preço mínimo de um serviço ou produto seu. Se você é empregado, some o custo do mês com a sobra que quer: esse é o valor que precisa entrar todo mês.',
     ],
     registro: {

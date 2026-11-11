@@ -26,7 +26,7 @@ export const constancia: Trecho = {
           k: 'Seu palpite',
           pergunta: 'E se, no lugar da maratona, fossem 30 minutos por dia, 6 dias por semana? Em 50 semanas, quantas horas isso soma?',
           min: 20,
-          max: 300,
+          max: 400,
           passo: 10,
           resposta: 150,
           formato: 'horas',
@@ -155,7 +155,7 @@ export const constancia: Trecho = {
           k: 'A história do Davi',
           t: 'Onze certificados',
           texto: 'Davi tem 23 anos, trabalha de dia em uma loja de Fortaleza e estuda programação à noite. Em um ano, juntou 11 certificados de cursos online. Na entrevista para uma vaga de iniciante, ouviu: "Me mostra alguma coisa que você fez." Ele não tinha nada para abrir.',
-          cena: { tipo: 'pessoa', quem: 'davi', humor: 'preocupado', fala: 'Eu fiz 11 cursos...' },
+          cena: { tipo: 'pessoa', quem: 'davi', humor: 'preocupado', fala: 'Eu fiz 11 cursos…' },
         },
         {
           tipo: 'escolha',
@@ -202,7 +202,7 @@ export const constancia: Trecho = {
           k: 'Seu palpite',
           pergunta: 'Davi tem 1 hora por noite, 5 noites por semana. Novo combinado: 15 minutos vendo a aula e o resto fazendo. Em 4 semanas, quantas horas de prática ele soma?',
           min: 2,
-          max: 30,
+          max: 40,
           passo: 1,
           resposta: 15,
           formato: 'horas',
@@ -223,17 +223,17 @@ export const constancia: Trecho = {
         },
         {
           tipo: 'separar',
-          pergunta: 'Isto é só assistir ou é praticar?',
-          grupos: ['Só assistir', 'Praticar'],
+          pergunta: 'Você terminou o projeto e vai mostrar para alguém. Este pedido de opinião ajuda a corrigir?',
+          grupos: ['Ajuda a corrigir', 'Só rende elogio'],
           itens: [
-            { texto: 'Ver três vídeos seguidos sobre o assunto', grupo: 0 },
-            { texto: 'Repetir o exercício sem olhar a resposta', grupo: 1 },
-            { texto: 'Salvar o post para ler depois', grupo: 0 },
-            { texto: 'Explicar para um amigo o que aprendeu', grupo: 1 },
-            { texto: 'Começar outro curso antes de acabar o primeiro', grupo: 0 },
-            { texto: 'Fazer um trabalho de teste para um conhecido', grupo: 1 },
+            { texto: '"O que você mudaria nisto?"', grupo: 0 },
+            { texto: '"Ficou bom, né?"', grupo: 1 },
+            { texto: '"Em que parte você se perdeu?"', grupo: 0 },
+            { texto: '"Gostou?"', grupo: 1 },
+            { texto: '"Usa por uma semana e me conta o que atrapalhou"', grupo: 0 },
+            { texto: 'Mostrar só para quem sempre elogia', grupo: 1 },
           ],
-          retorno: 'Assistir, salvar e começar outro curso dão a sensação de avanço sem o risco de errar. Praticar expõe o erro, e é o erro corrigido que vira aprendizado.',
+          retorno: 'Mostrar serve para achar o que corrigir. "Ficou bom, né?" e "gostou?" pedem um sim, e a pessoa dá por educação. Pergunta aberta sobre o que mudar ou onde ela se perdeu traz o erro para a mesa, e é o erro corrigido que vira aprendizado.',
         },
         {
           tipo: 'fala',
@@ -339,10 +339,10 @@ export const constancia: Trecho = {
         },
         {
           tipo: 'escolha',
-          pergunta: 'Bia tem entrevista de Jovem Aprendiz amanhã. Qual pedido para a IA ajuda mais?',
+          pergunta: 'Na véspera de uma entrevista de Jovem Aprendiz em um supermercado, Bia resolveu treinar com a IA. Qual pedido ajudava mais?',
           opcoes: [
             { texto: '"Me dá dicas de entrevista de emprego para eu ir bem amanhã e conseguir a vaga, por favor."', retorno: 'Vai vir uma lista que serve para qualquer pessoa e qualquer vaga. O pedido é educado, mas não diz quem ela é, qual é a vaga nem como ela quer treinar.' },
-            { texto: '"Tenho 16 anos e entrevista de Jovem Aprendiz em um mercado. Faça uma pergunta por vez e comente cada resposta."', certa: true, retorno: 'Isso. Tem contexto, tarefa e formato. Bia treina respondendo com as próprias palavras, e recebe correção a cada resposta.' },
+            { texto: '"Tenho 16 anos e entrevista de Jovem Aprendiz em um supermercado. Faça uma pergunta por vez e comente cada resposta."', certa: true, retorno: 'Isso. Tem contexto, tarefa e formato. Bia treina respondendo com as próprias palavras, e recebe correção a cada resposta.' },
             { texto: '"Escreva as melhores respostas para as perguntas mais comuns de entrevista, para eu decorar."', retorno: 'Resposta decorada soa falsa e deixa a pessoa sem chão quando a pergunta muda um pouco. Treinar responder funciona melhor que decorar.' },
           ],
         },
@@ -354,7 +354,7 @@ export const constancia: Trecho = {
         },
         {
           tipo: 'escolha',
-          pergunta: 'Luciana perguntou a um assistente quanto um MEI pode faturar por ano. Veio um valor diferente do que ela tinha ouvido. O que fazer?',
+          pergunta: 'Luciana perguntou a um assistente quanto pode faturar por ano um MEI, o registro de empresa de quem trabalha por conta. Veio um valor diferente do que ela tinha ouvido. O que fazer?',
           opcoes: [
             { texto: 'Conferir no site oficial do governo, gov.br/mei', certa: true, retorno: 'Isso. Limite, imposto e prazo mudam, e a IA pode estar desatualizada ou ter inventado. A regra do MEI está no Portal do Empreendedor.' },
             { texto: 'Ficar com o valor da IA, que deve ser o mais atualizado', retorno: 'A IA pode ter aprendido com textos antigos ou ter inventado o número. Para regra e imposto, vale o que está no site oficial.' },
@@ -491,11 +491,11 @@ export const constancia: Trecho = {
         },
         {
           tipo: 'escolha',
-          pergunta: 'Bia recebeu de um número desconhecido: "Você foi selecionada para Jovem Aprendiz, R$ 1.900. Garanta a vaga pagando hoje a taxa de R$ 89 do curso." O que fazer?',
+          pergunta: 'Naquele mês fraco, Jéssica recebeu de um número desconhecido: "Renda extra: R$ 300 por dia avaliando produtos pelo celular. Para liberar as tarefas, faça hoje um Pix de R$ 50." O que fazer?',
           opcoes: [
-            { texto: 'Pagar hoje, porque a vaga pode ir para outra pessoa', retorno: 'A pressa faz parte do golpe: ela existe para você não ter tempo de pensar nem de perguntar a alguém. Vaga de verdade não some em duas horas.' },
-            { texto: 'Perguntar se dá para pagar a taxa depois do primeiro salário', retorno: 'Negociar a taxa é aceitar que ela existe. Empresa séria não cobra para contratar: curso e exame são por conta de quem emprega.' },
-            { texto: 'Não pagar, não clicar em nada e bloquear o contato', certa: true, retorno: 'Isso. São três sinais na mesma mensagem: salário alto para a vaga, dinheiro adiantado e pressa. E Bia nem tinha se candidatado.' },
+            { texto: 'Pagar os R$ 50, porque R$ 300 por dia resolveriam o mês', retorno: 'O golpista aposta nessa esperança. Quem paga os R$ 50 costuma ouvir um novo pedido de dinheiro para "liberar o saque", e o ganho prometido não chega.' },
+            { texto: 'Perguntar se dá para descontar os R$ 50 do primeiro pagamento', retorno: 'Negociar o depósito é aceitar que ele faz sentido. Trabalho de verdade paga você pelo que foi feito e nunca cobra para você começar.' },
+            { texto: 'Não pagar, não clicar em nada e bloquear o contato', certa: true, retorno: 'Isso. São três sinais na mesma mensagem: ganho alto e rápido, dinheiro adiantado e pressa. E Jéssica nem conhecia quem mandou.' },
           ],
         },
         {
@@ -512,7 +512,7 @@ export const constancia: Trecho = {
           itens: [
             { texto: '"Ganhe R$ 500 por dia sem sair de casa"', grupo: 0 },
             { texto: '"Salário de R$ 1.800, com registro em carteira"', grupo: 1 },
-            { texto: '"Deposite R$ 50 para liberar as suas tarefas"', grupo: 0 },
+            { texto: '"Pague a taxa de R$ 89 e garanta a sua vaga"', grupo: 0 },
             { texto: '"Entrevista na loja, quinta, às 14h"', grupo: 1 },
             { texto: '"Você ganha por cada pessoa que trouxer"', grupo: 0 },
             { texto: '"Comissão de 10% sobre o que você vender"', grupo: 1 },

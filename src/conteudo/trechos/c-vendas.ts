@@ -59,7 +59,7 @@ export const cVendas: Trecho = {
           quem: 'lu',
           k: 'A história da Luciana',
           t: 'Nove peças e uma descoberta',
-          texto: 'Luciana fotografou as 15 peças e ofereceu para conhecidas pelo WhatsApp, com o preço. Em um mês vendeu 9 e recebeu R$ 290. E descobriu uma coisa: as blusas de tamanho G e GG saíam no mesmo dia, e três conhecidas perguntaram se ela tinha mais.',
+          texto: 'Luciana fotografou as 15 peças e pôs preço em cada uma. No primeiro mês vendeu 9, quase todas para conhecidas, pelo WhatsApp, e recebeu R$ 290. E descobriu uma coisa: as blusas de tamanho G e GG saíam no mesmo dia, e três conhecidas perguntaram se ela tinha mais.',
           cena: { tipo: 'numero', valor: 290, formato: 'reais', legenda: 'De 9 peças que estavam paradas no armário' },
         },
         {
@@ -189,7 +189,7 @@ export const cVendas: Trecho = {
           tipo: 'fala',
           t: 'A taxa muda. Confira antes de anunciar',
           texto: 'Neste exemplo, a taxa foi de 20% do preço. Cada site e cada maquininha tem a sua, e ela muda com o tempo. Abra a página de taxas da plataforma, anote o valor e refaça a conta.',
-          pontos: ['Site de vendas: fica com uma parte de cada venda', 'Maquininha e link de pagamento: taxa maior no parcelado', 'Pix direto: costuma não ter taxa, mas confira na sua conta'],
+          pontos: ['Site de vendas: fica com uma parte de cada venda', 'Maquininha e link de pagamento: a taxa costuma ser maior no parcelado', 'Pix direto: costuma não ter taxa, mas confira na sua conta'],
         },
         {
           tipo: 'escolha',
