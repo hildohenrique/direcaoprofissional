@@ -101,12 +101,27 @@ Para ligar as contas em um projeto Supabase:
 3. Em Authentication, URL Configuration, coloque o endereço do site em "Site URL".
 4. Preencha as duas variáveis `VITE_SUPABASE_*` no site e publique de novo.
 
+## No ar
+
+- **Site:** https://direcaoprofissional-app.netlify.app (projeto `direcaoprofissional-app` na Netlify, publicado por envio do código; ainda não está ligado ao GitHub para publicar sozinho a cada commit).
+- **Contas:** projeto Supabase `direcao-profissional-staging`, tabela `estados`. Esse projeto está com o cadastro de contas novas desligado: só quem já tem conta entra, com e-mail e senha. O app percebe isso e mostra o aviso no perfil.
+- **Norte:** responde no site, só para quem está logado (`NORTE_EXIGE_LOGIN=1`). A chave da Anthropic não foi configurada no site: ela vem da própria Netlify (AI Gateway, cobrado nos créditos da conta) ou de uma variável do time.
+
+Testado no ar em 11/11/2026 com uma conta de teste, apagada depois: entrar com senha, salvar o progresso, entrar em um segundo aparelho e receber o progresso, e conversar com o Norte.
+
+Para abrir o cadastro a qualquer pessoa, no painel do Supabase:
+
+1. Authentication, Sign In / Providers: ligar "Allow new users to sign up".
+2. Authentication, URL Configuration: colocar o endereço do site em "Site URL".
+3. Authentication, Email Templates, "Magic Link": incluir `{{ .Token }}`, para o e-mail levar o código de 6 números.
+4. Configurar um serviço de envio de e-mail próprio (SMTP). O envio embutido do Supabase só aguenta poucos e-mails por hora.
+
 ## O que ainda não existe
 
 Estado desta versão, para ninguém ser pego de surpresa:
 
-- **Contas ainda sem teste real.** O login e a cópia na nuvem estão escritos e a junção de aparelhos tem testes, mas nada disso rodou contra um projeto Supabase de verdade. Sem as variáveis, o progresso fica só no aparelho, e trocar de celular ou limpar o navegador perde tudo.
+- **Cadastro aberto.** Depende dos quatro passos acima. A entrada por código de e-mail está escrita e nunca rodou de verdade; a entrada por senha foi testada no ar.
 - **Venda.** Não há pagamento nem controle de acesso. Falta decidir o modelo (o que é gratuito, preço, assinatura ou compra única) e ligar o Stripe.
-- **Norte em produção.** O servidor do mentor foi testado nos caminhos de recusa (sem chave, pedido inválido, login exigido), e a chamada real ao modelo ainda não foi exercitada com uma chave. O freio de uso atual é por instância e por endereço; antes de abrir ao público, exija login e limite por usuário. A verificação de login pelo Supabase está escrita e também não foi exercitada.
+- **Limite de uso do Norte.** Só quem está logado conversa, mas o freio é por instância da função e não por pessoa. Antes de abrir o cadastro, limitar por usuário e acompanhar o custo.
 - **Menores de idade.** O app avisa sobre as regras de trabalho, mas não pede consentimento de responsável. Antes de vender para menores, resolver isso com a LGPD em vista.
 - **Vídeo e narração.** As aulas são texto, desenho animado e interação, com leitura em voz alta pelo próprio aparelho. Não há vídeo gravado.
