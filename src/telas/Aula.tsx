@@ -231,13 +231,21 @@ export function Aula() {
             <i key={i} className={i < indice ? 'cheio' : i === indice ? 'atual' : ''} />
           ))}
         </div>
+        <button
+          className="botao-icone"
+          aria-label="Tirar uma dúvida com o Norte sobre esta parte"
+          onClick={() => {
+            acoes.guardarPosicao(parada.id, indice);
+            navegar('/norte', { state: { pedido: `Estou na parada "${parada.titulo}" e não entendi bem esta parte: "${textoParaVoz(batida).slice(0, 220)}". Me explica de outro jeito, com um exemplo do meu caminho?`, voltar: `/parada/${parada.id}` } });
+          }}
+        >
+          <Icone nome="norte" />
+        </button>
         {vozDisponivel() ? (
           <button className={`botao-icone${ajustes.voz ? ' ligado' : ''}`} onClick={() => acoes.ajustar((a) => { a.voz = !a.voz; })} aria-label={ajustes.voz ? 'Desligar a leitura em voz alta' : 'Ouvir a aula em voz alta'} aria-pressed={ajustes.voz}>
             <Icone nome={ajustes.voz ? 'som' : 'mudo'} />
           </button>
-        ) : (
-          <span className="botao-icone" />
-        )}
+        ) : null}
       </header>
 
       <main className="aula-corpo" ref={corpo}>

@@ -76,7 +76,7 @@ gera `dist-unico/index.html`, um arquivo só, para mostrar o app sem servidor (o
 ## Arquitetura
 
 - **React 19 + Vite + TypeScript.** Sem biblioteca de componentes: o CSS está em `src/estilo/`, com as cores definidas uma vez em `base.css`. O mapa é papel à luz do dia; a aula é um palco escuro (`.palco`), que redefine as mesmas cores.
-- **Tudo salvo no aparelho.** O estado inteiro (`src/nucleo/estado.ts`) fica no `localStorage`, em um objeto só. Não há cadastro nem servidor de dados nesta versão.
+- **Salvo no aparelho, com conta opcional.** O estado inteiro (`src/nucleo/estado.ts`) fica no `localStorage`, em um objeto só, e o app funciona sem cadastro. Com as variáveis do Supabase, o perfil ganha login por e-mail com código, e o estado é copiado para a nuvem (`src/nucleo/nuvem.ts`). Ao entrar em outro aparelho, as duas cópias são juntadas sem perder conquistas (`src/nucleo/mesclar.ts`).
 - **Núcleo sem interface.** `src/nucleo/` tem as regras (diagnóstico, rota, revisão, ritmo, contas) como funções puras, cobertas por testes.
 - **Conteúdo como dados.** Cada parada é um objeto tipado. Os tipos estão em `src/nucleo/tipos.ts`.
 - **Norte.** `servidor/norte.ts` é uma função `Request -> Response` que chama a API da Anthropic em streaming e devolve uma linha JSON por pedaço. Roda como função da Netlify (`netlify/functions/norte.ts`, em `/api/norte`) e dentro do Vite em desenvolvimento. O navegador nunca vê a chave.
@@ -91,13 +91,21 @@ Variáveis de ambiente do site:
 |---|---|
 | `ANTHROPIC_API_KEY` | Liga o Norte. |
 | `NORTE_MODELO` | Opcional. Modelo do Norte (padrão `claude-opus-5-5`). |
-| `NORTE_EXIGE_LOGIN`, `SUPABASE_URL`, `SUPABASE_ANON_KEY` | Opcional. Faz o Norte só responder a quem estiver logado no Supabase. |
+| `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` | Opcional. Ligam a conta e a cópia do progresso na nuvem. |
+| `NORTE_EXIGE_LOGIN`, `SUPABASE_URL`, `SUPABASE_ANON_KEY` | Opcional. Fazem o Norte só responder a quem estiver logado. |
+
+Para ligar as contas em um projeto Supabase:
+
+1. Rode a migração `supabase/migrations/20261111000000_estados.sql` (cria a tabela `estados`, com uma linha por pessoa e acesso só à própria linha).
+2. Em Authentication, Email Templates, inclua `{{ .Token }}` no modelo "Magic Link", para o e-mail levar o código de 6 números além do link.
+3. Em Authentication, URL Configuration, coloque o endereço do site em "Site URL".
+4. Preencha as duas variáveis `VITE_SUPABASE_*` no site e publique de novo.
 
 ## O que ainda não existe
 
 Estado desta versão, para ninguém ser pego de surpresa:
 
-- **Contas e sincronização.** O progresso fica só no aparelho. Trocar de celular ou limpar o navegador perde tudo. O próximo passo é login e cópia do estado no Supabase.
+- **Contas ainda sem teste real.** O login e a cópia na nuvem estão escritos e a junção de aparelhos tem testes, mas nada disso rodou contra um projeto Supabase de verdade. Sem as variáveis, o progresso fica só no aparelho, e trocar de celular ou limpar o navegador perde tudo.
 - **Venda.** Não há pagamento nem controle de acesso. Falta decidir o modelo (o que é gratuito, preço, assinatura ou compra única) e ligar o Stripe.
 - **Norte em produção.** O servidor do mentor foi testado nos caminhos de recusa (sem chave, pedido inválido, login exigido), e a chamada real ao modelo ainda não foi exercitada com uma chave. O freio de uso atual é por instância e por endereço; antes de abrir ao público, exija login e limite por usuário. A verificação de login pelo Supabase está escrita e também não foi exercitada.
 - **Menores de idade.** O app avisa sobre as regras de trabalho, mas não pede consentimento de responsável. Antes de vender para menores, resolver isso com a LGPD em vista.

@@ -20,7 +20,8 @@ const FALHAS: Record<FalhaNorte, string> = {
 export function Norte() {
   const e = useEstado();
   const local = useLocation();
-  const pedidoInicial = (local.state as { pedido?: string } | null)?.pedido ?? '';
+  const veioDe = local.state as { pedido?: string; voltar?: string } | null;
+  const pedidoInicial = veioDe?.pedido ?? '';
   const [texto, setTexto] = useState(pedidoInicial);
   const [rascunho, setRascunho] = useState<string | null>(null);
   const [falha, setFalha] = useState<FalhaNorte | null>(null);
@@ -84,6 +85,15 @@ export function Norte() {
           )}
         </header>
 
+        {veioDe?.voltar && (
+          <Link className="faixa-revisao" to={veioDe.voltar}>
+            <Icone nome="voltar" tamanho={18} />
+            <span>
+              <b>Voltar para a parada</b>, do ponto onde você parou
+            </span>
+          </Link>
+        )}
+
         <div className="norte-conversa" aria-live="polite">
           {e.norte.length === 0 && !ocupado && (
             <div className="fala-norte surge-2">
@@ -129,7 +139,7 @@ export function Norte() {
           <div ref={fim} />
         </div>
 
-        {e.norte.length === 0 && !ocupado && (
+        {e.norte.length === 0 && !ocupado && !pedidoInicial && (
           <div className="norte-sugestoes surge-3">
             {sugestoes.map((s) => (
               <button key={s} className="sugestao" onClick={() => enviar(s)}>
