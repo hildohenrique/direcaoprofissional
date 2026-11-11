@@ -18,9 +18,11 @@ export interface Conta {
   situacao: 'desligada' | 'carregando' | 'fora' | 'dentro';
   email?: string;
   copia: 'parada' | 'enviando' | 'em-dia' | 'erro';
+  /** o projeto aceita contas novas? null enquanto não se sabe */
+  cadastroAberto: boolean | null;
 }
 
-let conta: Conta = { situacao: nuvemLigada ? 'carregando' : 'desligada', copia: 'parada' };
+let conta: Conta = { situacao: nuvemLigada ? 'carregando' : 'desligada', copia: 'parada', cadastroAberto: null };
 let token: string | null = null;
 let idUsuario: string | null = null;
 const ouvintes = new Set<() => void>();
@@ -106,6 +108,11 @@ export async function iniciarNuvem() {
       if (sessao && antes !== idUsuario && (evento === 'SIGNED_IN' || evento === 'INITIAL_SESSION')) setTimeout(() => void sincronizar(), 0);
     });
     aoMudar(agendarEnvio);
+    /* as configurações públicas do projeto dizem se ele aceita contas novas */
+    fetch(`${URL_NUVEM}/auth/v1/settings`, { headers: { apikey: CHAVE_NUVEM! } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((cfg: { disable_signup?: boolean } | null) => definir({ cadastroAberto: cfg ? !cfg.disable_signup : null }))
+      .catch(() => undefined);
     /* ao fechar ou trocar de aba, tenta mandar o que ficou pendente */
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'hidden' && espera) {
@@ -123,8 +130,11 @@ export async function iniciarNuvem() {
 export async function pedirCodigo(email: string): Promise<string | null> {
   try {
     const c = await cliente();
-    const { error } = await c.auth.signInWithOtp({ email: email.trim().toLowerCase(), options: { shouldCreateUser: true, emailRedirectTo: window.location.origin } });
-    return error ? (error.status === 429 ? 'Muitas tentativas. Espere um minuto e peça de novo.' : 'Não consegui enviar o código. Confira o e-mail e tente de novo.') : null;
+    const { error } = await c.auth.signInWithOtp({ email: email.trim().toLowerCase(), options: { shouldCreateUser: conta.cadastroAberto !== false, emailRedirectTo: window.location.origin } });
+    if (!error) return null;
+    if (error.status === 429) return 'Muitas tentativas. Espere um minuto e peça de novo.';
+    if (conta.cadastroAberto === false) return 'Não achei uma conta com esse e-mail, e o cadastro de contas novas ainda não está aberto.';
+    return 'Não consegui enviar o código. Confira o e-mail e tente de novo.';
   } catch {
     return 'Sem conexão. Confira a internet e tente de novo.';
   }
@@ -135,6 +145,17 @@ export async function confirmarCodigo(email: string, codigo: string): Promise<st
     const c = await cliente();
     const { error } = await c.auth.verifyOtp({ email: email.trim().toLowerCase(), token: codigo.trim(), type: 'email' });
     return error ? 'Código errado ou vencido. Confira os números ou peça um código novo.' : null;
+  } catch {
+    return 'Sem conexão. Confira a internet e tente de novo.';
+  }
+}
+
+export async function entrarComSenha(email: string, senha: string): Promise<string | null> {
+  try {
+    const c = await cliente();
+    const { error } = await c.auth.signInWithPassword({ email: email.trim().toLowerCase(), password: senha });
+    if (!error) return null;
+    return error.status === 429 ? 'Muitas tentativas. Espere um minuto e tente de novo.' : 'E-mail ou senha não conferem.';
   } catch {
     return 'Sem conexão. Confira a internet e tente de novo.';
   }

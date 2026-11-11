@@ -22,3 +22,8 @@ create policy "atualiza o proprio estado" on public.estados
   for update to authenticated
   using ((select auth.uid()) = user_id)
   with check ((select auth.uid()) = user_id);
+
+-- Sem estas permissões as regras de linha nem chegam a ser avaliadas (projetos novos do Supabase
+-- não dão acesso automático às tabelas). Só quem está logado mexe na tabela.
+revoke all on public.estados from anon;
+grant select, insert, update on public.estados to authenticated;

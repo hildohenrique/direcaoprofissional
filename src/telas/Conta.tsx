@@ -1,19 +1,20 @@
 import { useState } from 'react';
-import { confirmarCodigo, pedirCodigo, sair, useConta } from '@/nucleo/nuvem';
+import { confirmarCodigo, entrarComSenha, pedirCodigo, sair, useConta } from '@/nucleo/nuvem';
 import { Icone } from '@/ui/Icone';
 
-/** O bloco de conta do perfil: entrar com e-mail e código, e o estado da cópia na nuvem. */
+/** O bloco de conta do perfil: entrar com senha ou com código por e-mail, e o estado da cópia na nuvem. */
 export function Conta() {
   const conta = useConta();
+  const [modo, setModo] = useState<'senha' | 'codigo'>('codigo');
   const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
   const [codigo, setCodigo] = useState('');
-  const [etapa, setEtapa] = useState<'email' | 'codigo'>('email');
+  const [esperandoCodigo, setEsperandoCodigo] = useState(false);
   const [aviso, setAviso] = useState<string | null>(null);
   const [ocupado, setOcupado] = useState(false);
 
-  if (conta.situacao === 'desligada') {
-    return <p className="pequeno suave">Tudo o que você faz aqui fica guardado neste aparelho. Se você limpar os dados do navegador ou trocar de celular, o progresso não vai junto.</p>;
-  }
+  const soNoAparelho = 'Tudo o que você faz aqui fica guardado neste aparelho. Se você limpar os dados do navegador ou trocar de celular, o progresso não vai junto.';
+  if (conta.situacao === 'desligada') return <p className="pequeno suave">{soNoAparelho}</p>;
   if (conta.situacao === 'carregando') return <p className="pequeno suave">Conferindo a sua conta…</p>;
 
   if (conta.situacao === 'dentro') {
@@ -37,30 +38,45 @@ export function Conta() {
     );
   }
 
+  /* enquanto o cadastro não abre, só quem já tem conta consegue entrar */
+  const fechado = conta.cadastroAberto === false;
+  const comSenha = modo === 'senha' || fechado;
+
   const enviar = async (ev: React.FormEvent) => {
     ev.preventDefault();
     setOcupado(true);
     setAviso(null);
-    if (etapa === 'email') {
-      const erro = await pedirCodigo(email);
-      if (erro) setAviso(erro);
-      else setEtapa('codigo');
-    } else {
-      const erro = await confirmarCodigo(email, codigo);
-      if (erro) setAviso(erro);
-    }
+    let erro: string | null;
+    if (comSenha && !esperandoCodigo) erro = await entrarComSenha(email, senha);
+    else if (!esperandoCodigo) {
+      erro = await pedirCodigo(email);
+      if (!erro) setEsperandoCodigo(true);
+    } else erro = await confirmarCodigo(email, codigo);
+    setAviso(erro);
     setOcupado(false);
   };
 
   return (
     <form className="pilha" onSubmit={enviar}>
-      <p>
-        <b>Guarde o seu progresso em uma conta.</b>
-      </p>
-      <p className="pequeno suave">Hoje ele está só neste aparelho. Com a conta, você troca de celular sem perder nada. Só pedimos o e-mail.</p>
-      {etapa === 'email' ? (
-        <input id="conta-email" className="campo" type="email" inputMode="email" autoComplete="email" required placeholder="seu@email.com" value={email} onChange={(ev) => setEmail(ev.target.value)} aria-label="Seu e-mail" />
+      {fechado ? (
+        <>
+          <p className="pequeno suave">{soNoAparelho}</p>
+          <p className="pequeno">
+            <b>Já tem uma conta?</b> Entre para guardar o progresso nela. O cadastro de contas novas ainda não está aberto.
+          </p>
+        </>
       ) : (
+        <>
+          <p>
+            <b>Guarde o seu progresso em uma conta.</b>
+          </p>
+          <p className="pequeno suave">Hoje ele está só neste aparelho. Com a conta, você troca de celular sem perder nada. Só pedimos o e-mail.</p>
+        </>
+      )}
+
+      {!esperandoCodigo && <input id="conta-email" className="campo" type="email" inputMode="email" autoComplete="email" required placeholder="seu@email.com" value={email} onChange={(ev) => setEmail(ev.target.value)} aria-label="Seu e-mail" />}
+      {comSenha && !esperandoCodigo && <input id="conta-senha" className="campo" type="password" autoComplete="current-password" required placeholder="Sua senha" value={senha} onChange={(ev) => setSenha(ev.target.value)} aria-label="Sua senha" />}
+      {esperandoCodigo && (
         <>
           <p className="pequeno">
             Mandei um código para <b>{email}</b>. Digite os números aqui, ou toque no link do e-mail.
@@ -70,12 +86,18 @@ export function Conta() {
       )}
       {aviso && <p className="norte-falha">{aviso}</p>}
       <button className="botao fino" type="submit" disabled={ocupado}>
-        {ocupado ? 'Um instante…' : etapa === 'email' ? 'Receber o código' : 'Entrar'}
+        {ocupado ? 'Um instante…' : esperandoCodigo || comSenha ? 'Entrar' : 'Receber o código'}
       </button>
-      {etapa === 'codigo' && (
-        <button type="button" className="botao-texto" onClick={() => { setEtapa('email'); setCodigo(''); setAviso(null); }}>
+      {esperandoCodigo ? (
+        <button type="button" className="botao-texto" onClick={() => { setEsperandoCodigo(false); setCodigo(''); setAviso(null); }}>
           Usar outro e-mail
         </button>
+      ) : (
+        !fechado && (
+          <button type="button" className="botao-texto" onClick={() => { setModo(modo === 'senha' ? 'codigo' : 'senha'); setAviso(null); }}>
+            {modo === 'senha' ? 'Entrar com código por e-mail' : 'Já tenho senha'}
+          </button>
+        )
       )}
     </form>
   );
