@@ -1,0 +1,36 @@
+{
+  "name": "direcao-profissional",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Direção Profissional — um GPS para quem quer ganhar o próprio dinheiro começando do zero.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "build:unico": "vite build --mode unico",
+    "preview": "vite preview",
+    "tipos": "tsc --noEmit",
+    "teste": "vitest run",
+    "verificar": "tsc --noEmit && vitest run"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0",
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@supabase/supabase-js": "^2.119.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.7",
+    "vite-plugin-pwa": "^2.0.0",
+    "vite-plugin-singlefile": "^2.3.4",
+    "vitest": "^5.1.0"
+  }
+}

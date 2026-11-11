@@ -1,0 +1,516 @@
+/* O mapa da rota: papel com relevo, uma estrada que serpenteia e paradas como marcos. */
+.rota {
+  padding-top: 0;
+}
+.rota-topo {
+  position: sticky;
+  top: 0;
+  z-index: 12;
+  padding: max(10px, env(safe-area-inset-top)) 0 10px;
+  background: color-mix(in srgb, var(--papel) 92%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.rota-saudacao {
+  display: grid;
+  line-height: 1.15;
+}
+.rota-saudacao b {
+  font-family: var(--f-titulo);
+  font-size: 19px;
+  font-weight: 580;
+}
+.rota-saudacao span {
+  font-size: 12.5px;
+  color: var(--tinta-2);
+  font-weight: 600;
+}
+.ritmo-botao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--linha);
+  background: var(--cartao);
+  color: var(--tinta-2);
+  text-decoration: none;
+}
+.ritmo-dias {
+  display: flex;
+  gap: 3px;
+}
+.ritmo-dias i {
+  width: 7px;
+  height: 18px;
+  border-radius: 4px;
+  background: var(--papel-3);
+}
+.ritmo-dias i.feito {
+  background: var(--rota);
+}
+.ritmo-dias i.hoje {
+  outline: 1.5px solid var(--ouro);
+  outline-offset: 1px;
+}
+.rota-painel {
+  padding-top: 4px;
+  padding-bottom: 14px;
+}
+
+/* a faixa de instrução do GPS */
+.gps {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 14px 14px 16px;
+  border-radius: 20px;
+  background: var(--rota);
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 4px 0 var(--rota-2), var(--sombra-alta);
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+.gps:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--rota-2);
+}
+:root[data-tema='escuro'] .gps {
+  background: #1d6f5b;
+  box-shadow: 0 4px 0 #134b3d, var(--sombra-alta);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema='claro']) .gps {
+    background: #1d6f5b;
+    box-shadow: 0 4px 0 #134b3d, var(--sombra-alta);
+  }
+}
+.gps.chegou {
+  background: var(--tinta);
+  color: var(--papel);
+  box-shadow: var(--sombra-alta);
+}
+.gps-seta {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.16);
+}
+.gps-texto {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+}
+.gps-texto small {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 0.86;
+}
+.gps-texto b {
+  font-family: var(--f-titulo);
+  font-weight: 560;
+  font-size: 21px;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+.gps-ir {
+  flex: none;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: #fff;
+  color: #0f6b55;
+  font-weight: 800;
+  font-size: 15px;
+}
+.faixa-revisao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 14px;
+  background: var(--ouro-fundo);
+  border: 1px solid var(--ouro);
+  text-decoration: none;
+  font-size: 14.5px;
+  line-height: 1.3;
+}
+.faixa-revisao span {
+  flex: 1;
+}
+.faixa-revisao svg {
+  flex: none;
+  color: var(--ouro);
+}
+.rota-numeros {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.rota-numeros > * {
+  display: grid;
+  gap: 1px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--cartao);
+  border: 1px solid var(--linha);
+  text-decoration: none;
+  min-width: 0;
+}
+.rota-numeros strong {
+  font-family: var(--f-titulo);
+  font-weight: 580;
+  font-size: 22px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.rota-numeros strong small {
+  font-size: 14px;
+  color: var(--tinta-3);
+  font-weight: 500;
+}
+.rota-numeros strong.ouro {
+  color: var(--ouro);
+}
+.rota-numeros span {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--tinta-2);
+  line-height: 1.25;
+}
+
+/* o papel */
+.mapa-moldura {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 0 10px;
+}
+.mapa {
+  position: relative;
+  border-radius: 26px;
+  background: var(--papel-2);
+  border: 1px solid var(--linha);
+  color: var(--tinta);
+  overflow: hidden;
+  box-shadow: inset 0 0 60px rgba(120, 90, 40, 0.1);
+}
+.mapa-fundo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.mapa-fundo path {
+  vector-effect: non-scaling-stroke;
+  fill: none;
+}
+.estrada-base {
+  stroke: var(--cartao);
+  stroke-width: 26;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.9;
+}
+.estrada-tracejada {
+  stroke: var(--tinta-3);
+  stroke-width: 2.5;
+  stroke-dasharray: 2 11;
+  stroke-linecap: round;
+}
+.estrada-feita {
+  stroke: var(--ouro);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.rosa-dos-ventos {
+  position: absolute;
+  top: 16px;
+  right: 14px;
+  color: var(--tinta-3);
+  opacity: 0.55;
+  display: grid;
+  justify-items: center;
+}
+.rosa-dos-ventos span {
+  position: absolute;
+  top: -11px;
+  font-family: var(--f-titulo);
+  font-size: 11px;
+}
+.faixa-trecho {
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 8px 18px 10px;
+  border-radius: 18px;
+  background: radial-gradient(closest-side, var(--papel-2) 70%, transparent);
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  pointer-events: none;
+}
+.faixa-numero {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ouro);
+}
+.faixa-trecho b {
+  font-family: var(--f-titulo);
+  font-weight: 580;
+  font-size: 21px;
+  line-height: 1.15;
+}
+.faixa-trecho small {
+  font-size: 12px;
+  color: var(--tinta-2);
+  font-weight: 600;
+}
+
+/* os marcos */
+.no {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+.no-botao {
+  position: absolute;
+  left: -27px;
+  top: -27px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--cartao);
+  border: 2.5px solid var(--tinta-3);
+  color: var(--tinta-3);
+  font-family: var(--f-titulo);
+  font-size: 20px;
+  font-weight: 600;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s;
+}
+.no-botao:active {
+  transform: scale(0.94);
+}
+.no.travada .no-botao {
+  border-style: dashed;
+  background: var(--papel-2);
+  box-shadow: none;
+  width: 44px;
+  height: 44px;
+  left: -22px;
+  top: -22px;
+}
+.no.feita .no-botao {
+  background: var(--ouro-claro);
+  border-color: #a47a1e;
+  color: #4a3508;
+  box-shadow: 0 4px 0 #a47a1e;
+}
+.no.atual .no-botao {
+  width: 64px;
+  height: 64px;
+  left: -32px;
+  top: -32px;
+  background: var(--rota);
+  border-color: var(--cartao);
+  border-width: 4px;
+  color: var(--cartao);
+  font-size: 24px;
+  box-shadow: 0 5px 0 var(--rota-2), 0 10px 26px rgba(15, 107, 85, 0.35);
+}
+.pulso {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 3px solid var(--rota);
+  animation: pulsar 1.8s infinite;
+  pointer-events: none;
+}
+.no.missao .no-botao {
+  border-radius: 16px;
+  transform: rotate(45deg);
+}
+.no.missao .no-botao > svg {
+  transform: rotate(-45deg);
+}
+.no.missao .no-botao:active {
+  transform: rotate(45deg) scale(0.94);
+}
+.no.missao.livre .no-botao {
+  background: var(--barro);
+  border-color: var(--cartao);
+  color: #fff;
+  box-shadow: 0 0 0 5px var(--barro-fundo);
+}
+.no.missao.feita .no-botao {
+  box-shadow: none;
+}
+.no-rotulo {
+  position: absolute;
+  top: -27px;
+  min-height: 54px;
+  width: 142px;
+  display: grid;
+  align-content: center;
+  gap: 1px;
+  line-height: 1.22;
+  color: var(--tinta);
+}
+.no.rotulo-direita .no-rotulo {
+  left: 42px;
+  text-align: left;
+}
+.no.rotulo-esquerda .no-rotulo {
+  right: 42px;
+  text-align: right;
+}
+.no-rotulo small {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--barro);
+}
+.no-rotulo b {
+  font-size: 14.5px;
+  font-weight: 800;
+}
+.no-rotulo span {
+  font-size: 12px;
+  color: var(--tinta-2);
+  font-weight: 500;
+}
+.no.travada .no-rotulo {
+  opacity: 0.5;
+}
+.no.travada .no-rotulo b {
+  font-weight: 600;
+}
+.no.atual .no-rotulo b {
+  font-size: 16px;
+}
+.no.atual.rotulo-direita .no-rotulo {
+  left: 48px;
+}
+.no.atual.rotulo-esquerda .no-rotulo {
+  right: 48px;
+}
+
+/* o marcador da pessoa: anda de uma parada para a outra */
+.marcador {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 5;
+  pointer-events: none;
+  transition: left 1.4s cubic-bezier(0.5, 0, 0.2, 1), top 1.4s cubic-bezier(0.5, 0, 0.2, 1);
+}
+.marcador span {
+  position: absolute;
+  left: -19px;
+  top: -86px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50% 50% 50% 4px;
+  transform: rotate(-45deg);
+  background: var(--tinta);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+  animation: flutuar 2.2s ease-in-out infinite;
+  color: var(--ouro-claro);
+  font-family: var(--f-titulo);
+  font-weight: 600;
+  font-size: 18px;
+}
+.marcador b {
+  transform: rotate(45deg);
+  font-weight: 600;
+}
+@keyframes flutuar {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+.destino {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 2px;
+  transform: translateY(-34px);
+}
+.destino-bandeira {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--cartao);
+  border: 2.5px dashed var(--tinta-3);
+  color: var(--barro);
+  margin-bottom: 6px;
+}
+.destino.chegou .destino-bandeira {
+  background: var(--ouro-claro);
+  border: 3px solid #a47a1e;
+  color: #4a3508;
+}
+.destino small {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ouro);
+}
+.destino b {
+  font-family: var(--f-titulo);
+  font-weight: 580;
+  font-size: 22px;
+}
+.destino p {
+  font-size: 13px;
+  color: var(--tinta-2);
+  font-style: italic;
+  max-width: 280px;
+  line-height: 1.35;
+}
+.aviso-flutuante {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--barra) + 18px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: var(--tinta);
+  color: var(--papel);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  box-shadow: var(--sombra-alta);
+  animation: surgir 0.25s both;
+}

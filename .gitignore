@@ -1,0 +1,8 @@
+node_modules
+dist
+dist-unico
+.env
+.env.local
+.netlify
+*.log
+.DS_Store
